@@ -1,0 +1,123 @@
+---
+// Comprobante e-CF con borde troquelado abajo — el elemento fuerte del Home.
+import Icon from './Icon.astro';
+
+const rows = [
+  ['e-NCF', 'E310000000047'],
+  ['Código de seguridad', '7X9K2M'],
+  ['Fecha de emisión', '13/07/2026'],
+  ['Monto gravado', 'RD$ 12,450.00'],
+  ['ITBIS (18%)', 'RD$ 2,241.00'],
+];
+---
+
+<div class="drop">
+  <div class="body">
+    <div class="head">
+      <div>
+        <p class="name">Suplidora Eléctrica del Este, SRL</p>
+        <p class="fiscal rnc">RNC 1-30-88213-4</p>
+      </div>
+      <span class="badge ecf">e-CF · E31</span>
+    </div>
+
+    <div class="rows">
+      {
+        rows.map(([k, v]) => (
+          <div class="line">
+            <span class="k">{k}</span>
+            <span class="fiscal">{v}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="total">
+      <span>Total</span>
+      <strong class="fiscal">RD$ 14,691.00</strong>
+    </div>
+
+    <div class="verified">
+      <Icon name="check" size={14} stroke={2.6} color="var(--valid)" />
+      <span>RNC y e-NCF figuran vigentes en el padrón de la DGII · consultado hoy</span>
+    </div>
+  </div>
+  <div class="teeth" aria-hidden="true"></div>
+</div>
+
+<style>
+  .drop {
+    filter: drop-shadow(0 30px 60px rgba(14, 36, 39, 0.18));
+  }
+  .body {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-bottom: none;
+    border-radius: 18px 18px 0 0;
+    padding: 26px 28px 20px;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .name {
+    font-size: 14.5px;
+    font-weight: 700;
+  }
+  .rnc {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .rows {
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+  }
+  .k {
+    color: var(--ink-soft);
+  }
+  .total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
+  .total strong {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .verified {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--valid-bg);
+    border-radius: 10px;
+    padding: 9px 13px;
+    font-size: 12px;
+    color: var(--valid);
+    line-height: 1.4;
+  }
+  .teeth {
+    height: 16px;
+    background-image: radial-gradient(circle 8px at center, var(--surface) 7px, transparent 7.5px);
+    background-size: 16px 16px;
+    background-position: 8px 0;
+    background-repeat: repeat-x;
+  }
+</style>

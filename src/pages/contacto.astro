@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base
+  title="Contacto"
+  description="El soporte de FiscoRD se atiende por correo en soporte@fiscord.lat, en días hábiles, normalmente dentro de las 24 horas."
+  active={undefined}
+  path="/contacto"
+>
+  <section class="contact">
+    <div class="wrap">
+      <h1>Contacto</h1>
+      <p class="lede">
+        El soporte de FiscoRD se atiende por correo. Escríbenos y te respondemos
+        en días hábiles, normalmente dentro de las 24 horas.
+      </p>
+
+      <a href="mailto:soporte@fiscord.lat" class="card mailcard">
+        <span class="chip"><Icon name="mail" size={18} color="var(--aqua)" /></span>
+        <span>
+          <span class="mail">soporte@fiscord.lat</span>
+          <span class="sub">Consultas, problemas con la cuenta y facturación</span>
+        </span>
+      </a>
+
+      <p class="note">
+        Si ya tienes una cuenta, incluye el RNC de tu empresa en el correo para
+        que podamos ubicarla más rápido.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contact .wrap {
+    max-width: 640px;
+    padding-block: 84px 100px;
+  }
+  h1 {
+    font-size: 40px;
+    letter-spacing: -0.03em;
+  }
+  .lede {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-top: 16px;
+  }
+  .mailcard {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    margin-top: 28px;
+    color: var(--ink);
+  }
+  .mailcard:hover {
+    border-color: var(--aqua);
+  }
+  .mailcard > span:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .mail {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .sub {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .note {
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-top: 18px;
+    line-height: 1.6;
+  }
+</style>

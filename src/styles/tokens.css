@@ -1,0 +1,209 @@
+/* ─────────────────────────────────────────────────────────────
+   FiscoRD — identidad del sitio fiscord.lat
+   Portado del canvas de mockups (build.mjs · const STYLE).
+   Mismo ADN que la app: aguamarina, Bricolage / Instrument Sans /
+   IBM Plex Mono, borde troquelado, un solo elemento fuerte por pantalla.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --paper: #f4f8f7;
+  --ink: #0e2427;
+  --ink-soft: #54706f;
+  --ink-faint: #90aaa8;
+  --surface: #ffffff;
+  --surface-2: #f8fbfa;
+
+  --aqua: #0b7684;
+  --aqua-deep: #085362;
+  --aqua-600: #096878;
+
+  --mint: #deefec;
+  --mint-soft: #eef7f6;
+  --line: #e3ece9;
+  --line-soft: #eef4f2;
+
+  --valid: #12794f;
+  --valid-bg: #e7f5ee;
+  --warn: #906403;
+  --warn-bg: #fbf0d8;
+  --danger: #c13434;
+  --danger-bg: #fbe4e4;
+
+  /* Acento del contador / e-CF */
+  --ecf: #5b3fa6;
+  --ecf-bg: #efeafc;
+
+  --grad-brand: linear-gradient(155deg, #0b7684, #085362);
+  --grad-ink: linear-gradient(155deg, #0e343b, #0a2226);
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 20px;
+
+  --sh-sm: 0 1px 2px rgba(14, 36, 39, 0.05);
+  --sh-md: 0 8px 24px -12px rgba(14, 36, 39, 0.16);
+  --sh-lg: 0 28px 56px -30px rgba(14, 36, 39, 0.3);
+
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Instrument Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Ancho de contenido y aire lateral */
+  --wrap: 1200px;
+  --gutter: 40px;
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--aqua);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--aqua-deep);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+:focus-visible {
+  outline: 2px solid var(--aqua);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--aqua) 22%, transparent);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 99px;
+}
+
+/* ── Datos fiscales: SIEMPRE en mono con cifras tabulares ──
+   No es estética — es lo que alinea una columna de 600 montos. */
+.fiscal {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Contenedor ── */
+.wrap {
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── Tarjeta base ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.badge.ok {
+  background: var(--valid-bg);
+  color: var(--valid);
+}
+.badge.warn {
+  background: var(--warn-bg);
+  color: var(--warn);
+}
+.badge.mint {
+  background: var(--mint-soft);
+  color: var(--aqua-deep);
+}
+.badge.ecf {
+  background: var(--ecf-bg);
+  color: var(--ecf);
+}
+
+/* ── Chip de icono ── */
+.chip {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--mint-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--aqua);
+}
+
+/* ── Vidrio esmerilado (nav) ── */
+.glass {
+  background: rgba(244, 248, 247, 0.82);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Responsive: el aire lateral se aprieta en móvil ── */
+@media (max-width: 720px) {
+  :root {
+    --gutter: 20px;
+  }
+}

@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+
+const items = [
+  {
+    t: 'Guía del 606',
+    d: 'Qué es, quién lo presenta, cuándo se remite y qué lleva cada columna del formato oficial.',
+    meta: 'Guía',
+    href: '/recursos/guia-606',
+  },
+  {
+    t: 'Qué es un NCF',
+    d: 'Cómo se lee un Número de Comprobante Fiscal, los tipos que existen y la diferencia entre NCF físico y e-CF.',
+    meta: 'Guía',
+    href: '/recursos/que-es-un-ncf',
+  },
+  {
+    t: 'Calendario fiscal DGII 2026',
+    d: 'Referencia de las obligaciones mensuales y anuales más comunes, con enlace al portal de la DGII.',
+    meta: 'Referencia',
+    href: '/recursos/calendario-fiscal',
+  },
+];
+---
+
+<Base
+  title="Recursos"
+  description="Material de referencia sobre el 606, los NCF y el calendario de la DGII, con enlaces a las fuentes oficiales."
+  active="recursos"
+  path="/recursos"
+>
+  <section class="head">
+    <div class="wrap">
+      <h1>Recursos</h1>
+      <p>
+        Material de referencia sobre el 606, los NCF y el calendario de la DGII,
+        con enlaces a las fuentes oficiales. Lo escribimos para orientarte; no es
+        asesoría contable, legal ni tributaria y no reemplaza a tu contador.
+      </p>
+    </div>
+  </section>
+
+  <section class="list">
+    <div class="wrap">
+      {
+        items.map((it) => (
+          <a href={it.href} class="row">
+            <div>
+              <h2>{it.t}</h2>
+              <p>{it.d}</p>
+            </div>
+            <span class="meta">{it.meta}</span>
+            <Icon name="chevRight" size={18} color="var(--ink-faint)" />
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .head .wrap {
+    max-width: 1000px;
+    padding-block: 66px 30px;
+  }
+  h1 {
+    font-size: 44px;
+    letter-spacing: -0.035em;
+  }
+  .head p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+    max-width: 580px;
+    line-height: 1.6;
+  }
+  .list .wrap {
+    max-width: 1000px;
+    padding-block: 20px 76px;
+    display: flex;
+    flex-direction: column;
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 8px;
+    border-top: 1px solid var(--line);
+    transition: background 0.12s ease;
+  }
+  .row:first-child {
+    border-top: none;
+  }
+  .row:hover {
+    background: var(--surface-2);
+  }
+  .row > div {
+    flex: 1;
+  }
+  .row h2 {
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+  .row p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    max-width: 620px;
+    line-height: 1.6;
+  }
+  .meta {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 32px;
+    }
+    .row {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+</style>

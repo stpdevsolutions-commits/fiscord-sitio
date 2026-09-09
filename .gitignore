@@ -1,0 +1,27 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# generated types
+.astro/
+
+# vercel
+.vercel/
+
+# env
+.env
+.env.production
+.env.*.local
+
+# logs
+npm-debug.log*
+*.log
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

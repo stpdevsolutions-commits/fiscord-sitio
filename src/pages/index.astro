@@ -1,0 +1,437 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import Tear from '../components/Tear.astro';
+import Icon from '../components/Icon.astro';
+import Comprobante from '../components/Comprobante.astro';
+import Report606 from '../components/Report606.astro';
+
+const quita = [
+  {
+    t: 'El RNC y el NCF, verificados solos',
+    d: 'Cuando escribes o escaneas un comprobante, FiscoRD consulta el padrón público de contribuyentes de la DGII y te dice si ese RNC existe y si el NCF corresponde a un rango vigente. Es un dato sobre el comprobante — no un aval, pero te evita meter en el 606 una factura con un NCF que no cuadra.',
+    art: 'rnc',
+  },
+  {
+    t: 'El ITBIS y la clasificación, calculados',
+    d: 'Le das el monto total de la factura y marca qué impuestos trae incluidos; FiscoRD desglosa la base, el ITBIS y la propina legal. Sugiere el tipo de gasto del 606 según lo que sueles usar con ese proveedor.',
+    art: 'calc',
+  },
+  {
+    t: 'El e-CF, leído del QR',
+    d: 'Los comprobantes electrónicos traen un código QR. Lo escaneas con la cámara y FiscoRD saca el RNC, el e-NCF, el código de seguridad, la fecha y los montos. No transcribes nada.',
+    art: 'ecf',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿FiscoRD está certificado por la DGII?',
+    a: 'No. FiscoRD es una herramienta privada de gestión interna: te ayuda a registrar y organizar tus comprobantes. No somos un proveedor certificado de e-CF ni tenemos relación oficial con la DGII. Cuando decimos que un NCF figura «vigente», significa que así aparece en el portal público de la DGII en ese momento.',
+  },
+  {
+    q: '¿FiscoRD envía el 606 directamente a la DGII?',
+    a: 'No. FiscoRD genera el reporte del 606 en Excel con el formato oficial, para que tu contador lo revise y lo suba. El envío final lo hace el contador desde la Oficina Virtual de la DGII. El reporte del 607 (ventas) estará disponible próximamente.',
+  },
+  {
+    q: '¿Funciona con los comprobantes electrónicos (e-CF)?',
+    a: 'Sí. FiscoRD registra tanto NCF físicos (B01, B02, B11, B17…) como comprobantes fiscales electrónicos (E31, E32, E34…) según la normativa vigente de la DGII.',
+  },
+  {
+    q: '¿Necesito tarjeta de crédito para empezar?',
+    a: 'No. Puedes crear tu cuenta y usar el plan Free de forma permanente, con hasta 30 facturas al mes, sin ingresar ningún método de pago.',
+  },
+];
+---
+
+<Base
+  title="FiscoRD"
+  description="Registra los comprobantes de tus compras con el RNC y el NCF ya verificados contra el padrón de la DGII. El día que toca presentar el 606, el reporte ya está armado."
+  active="inicio"
+  path="/"
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <h1>El 606 deja de<br />ser un problema<br />de fin de mes</h1>
+        <p class="lede">
+          Registra los comprobantes de tus compras según los cargas, con el RNC y
+          el NCF ya verificados contra el padrón de la DGII. El día que toca
+          presentar, el reporte ya está armado.
+        </p>
+        <div class="cta">
+          <Button href="/register">Crear cuenta gratis</Button>
+          <Button href="/funciones" variant="ghost">Ver cómo funciona</Button>
+        </div>
+        <p class="fineprint">
+          Plan Free permanente · 30 facturas al mes · sin tarjeta de crédito.
+        </p>
+      </div>
+      <div><Comprobante /></div>
+    </div>
+  </section>
+
+  <Tear top="var(--paper)" bottom="var(--surface)" />
+
+  <!-- Lo que la app te quita de encima -->
+  <section class="quita">
+    <div class="wrap">
+      <h2>Lo que la app te quita de encima</h2>
+      <div class="items">
+        {
+          quita.map((it) => (
+            <div class="item">
+              <div>
+                <h3>{it.t}</h3>
+                <p>{it.d}</p>
+              </div>
+              <div class="art">
+                {it.art === 'rnc' && (
+                  <div class="card mini">
+                    <div class="mini-row">
+                      <span class="fiscal">1-30-88213-4</span>
+                      <Icon name="check" size={14} stroke={2.6} color="var(--valid)" />
+                    </div>
+                    <p class="mini-note ok">Suplidora Eléctrica del Este, SRL — activo</p>
+                  </div>
+                )}
+                {it.art === 'calc' && (
+                  <div class="card mini calc">
+                    <div class="kv">
+                      <span>Monto base</span>
+                      <span class="fiscal">7,000.00</span>
+                    </div>
+                    <div class="kv">
+                      <span>ITBIS (18%)</span>
+                      <span class="fiscal">1,260.00</span>
+                    </div>
+                    <div class="kv total">
+                      <span>Cód. gasto</span>
+                      <span class="fiscal">09 · Compras</span>
+                    </div>
+                  </div>
+                )}
+                {it.art === 'ecf' && (
+                  <div class="card mini">
+                    <div class="mini-row">
+                      <span class="badge ecf">e-CF</span>
+                      <span class="fiscal">E310000000047</span>
+                    </div>
+                    <p class="mini-note">
+                      Código de seguridad <span class="fiscal">7X9K2M</span> · leído del QR
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- El 606 en su formato -->
+  <section class="dark">
+    <div class="wrap">
+      <div class="dark-copy">
+        <h2>Y al final, el 606 en su formato</h2>
+        <p>
+          El Formato 606 se remite a la DGII cada mes, con las compras del mes
+          anterior, antes del día 15 y siempre antes de la declaración del ITBIS.
+          FiscoRD lo entrega en Excel con las columnas exactas del formato oficial
+          — tu contador solo revisa y sube.
+        </p>
+      </div>
+      <div class="report"><Report606 dark /></div>
+    </div>
+  </section>
+
+  <!-- Dos caminos -->
+  <section class="split">
+    <div class="wrap two">
+      <div>
+        <h3>Si llevas tu propia empresa</h3>
+        <p>
+          Registras las facturas según llegan — desde el teléfono, en la
+          ferretería, con la factura en la mano. Cuando tu contador te pide el
+          606, lo exportas y se lo mandas. Sin planillas a mano, sin buscar RNC en
+          Google.
+        </p>
+        <p class="more"><a href="/funciones">Ver las funciones</a></p>
+      </div>
+      <div>
+        <h3>Si eres contador</h3>
+        <p>
+          Agregas una empresa cliente por su RNC — o ella te invita — y entras
+          cuando su administrador lo aprueba. Ves las facturas de todas tus
+          empresas desde un panel, exportas el 606 de varias a la vez y sabes
+          cuáles todavía tienen cosas pendientes.
+        </p>
+        <p class="more"><a href="/contadores">FiscoRD para contadores</a></p>
+      </div>
+    </div>
+  </section>
+
+  <Tear top="var(--surface)" bottom="var(--surface-2)" />
+
+  <!-- FAQ -->
+  <section class="faq" id="preguntas">
+    <div class="wrap narrow">
+      <h2>Preguntas frecuentes</h2>
+      <div class="list">
+        {
+          faqs.map((f, i) => (
+            <details open={i === 0}>
+              <summary>
+                <span>{f.q}</span>
+                <Icon name="chevDown" size={15} color="var(--ink-faint)" class="caret" />
+              </summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h2 {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(180deg, var(--mint-soft), var(--paper) 78%);
+  }
+  .hero .grid {
+    display: grid;
+    grid-template-columns: 1.08fr 0.92fr;
+    gap: 64px;
+    align-items: center;
+    padding-block: 76px 60px;
+  }
+  .hero h1 {
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+  .lede {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-top: 22px;
+    max-width: 470px;
+  }
+  .cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .fineprint {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-top: 16px;
+  }
+
+  /* Quita */
+  .quita {
+    background: var(--surface);
+  }
+  .quita .wrap {
+    max-width: 1100px;
+    padding-block: 84px;
+  }
+  .quita h2 {
+    max-width: 620px;
+  }
+  .items {
+    margin-top: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 40px;
+    align-items: start;
+  }
+  .item h3 {
+    font-size: 19px;
+  }
+  .item p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-top: 9px;
+  }
+  .mini {
+    padding: 14px 16px;
+    max-width: 330px;
+  }
+  .mini-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+  }
+  .mini-note {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+  }
+  .mini-note.ok {
+    color: var(--valid);
+  }
+  .mini.calc {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12.5px;
+  }
+  .kv {
+    display: flex;
+    justify-content: space-between;
+  }
+  .kv span:first-child {
+    color: var(--ink-soft);
+  }
+  .kv.total {
+    border-top: 1px solid var(--line);
+    padding-top: 6px;
+  }
+
+  /* Dark */
+  .dark {
+    background: var(--grad-ink);
+    color: #fff;
+  }
+  .dark .wrap {
+    max-width: 1100px;
+    padding-block: 90px;
+  }
+  .dark-copy {
+    max-width: 560px;
+  }
+  .dark h2 {
+    font-size: 34px;
+  }
+  .dark p {
+    font-size: 15.5px;
+    color: rgba(255, 255, 255, 0.66);
+    line-height: 1.65;
+    margin-top: 14px;
+  }
+  .dark .report {
+    margin-top: 32px;
+  }
+
+  /* Split */
+  .split {
+    background: var(--surface);
+  }
+  .split .two {
+    max-width: 1100px;
+    padding-block: 84px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .split h3 {
+    font-size: 20px;
+  }
+  .split p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-top: 10px;
+  }
+  .split .more {
+    font-size: 13.5px;
+    margin-top: 14px;
+  }
+
+  /* FAQ */
+  .faq {
+    background: var(--surface-2);
+    border-top: 1px solid var(--line);
+  }
+  .faq .narrow {
+    max-width: 820px;
+    padding-block: 76px;
+  }
+  .faq h2 {
+    font-size: 30px;
+  }
+  .list {
+    margin-top: 26px;
+  }
+  details {
+    border-top: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  details:first-child {
+    border-top: none;
+  }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] summary {
+    color: var(--aqua);
+    font-weight: 700;
+  }
+  details[open] .caret {
+    transform: rotate(180deg);
+  }
+  .caret {
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+  details p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-top: 11px;
+    max-width: 660px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero .grid,
+    .split .two {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .hero h1 {
+      font-size: 42px;
+    }
+    .item {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .mini,
+    .item .art {
+      max-width: none;
+    }
+    h2,
+    .dark h2 {
+      font-size: 26px;
+    }
+  }
+</style>

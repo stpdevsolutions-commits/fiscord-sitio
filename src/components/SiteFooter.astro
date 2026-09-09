@@ -1,0 +1,138 @@
+---
+import Logo from './Logo.astro';
+
+const COLS = [
+  {
+    title: 'Producto',
+    links: [
+      { label: 'Funciones', href: '/funciones' },
+      { label: 'Para contadores', href: '/contadores' },
+      { label: 'Precios', href: '/precios' },
+      { label: 'App de Android', href: '/funciones#android' },
+      { label: 'Iniciar sesión', href: '/login' },
+    ],
+  },
+  {
+    title: 'Recursos',
+    links: [
+      { label: 'Guía del 606', href: '/recursos/guia-606' },
+      { label: 'Qué es un NCF', href: '/recursos/que-es-un-ncf' },
+      { label: 'Calendario fiscal 2026', href: '/recursos/calendario-fiscal' },
+      { label: 'Preguntas frecuentes', href: '/#preguntas' },
+    ],
+  },
+  {
+    title: 'FiscoRD',
+    links: [
+      { label: 'Contacto', href: '/contacto' },
+      { label: 'soporte@fiscord.lat', href: 'mailto:soporte@fiscord.lat' },
+      { label: 'Términos', href: '/terminos' },
+      { label: 'Privacidad', href: '/privacidad' },
+    ],
+  },
+];
+---
+
+<footer class="foot">
+  <div class="wrap inner">
+    <div class="grid">
+      <div class="about">
+        <Logo size={26} word={16} />
+        <p class="lede">
+          Registro y organización de comprobantes fiscales para empresas
+          dominicanas. Hecho en Santo Domingo.
+        </p>
+        <p class="disclaimer">
+          FiscoRD no está certificado por la DGII y no presenta declaraciones. La
+          presentación oficial la haces tú o tu contador en la Oficina Virtual de
+          la DGII.
+        </p>
+      </div>
+
+      {
+        COLS.map((col) => (
+          <nav class="col" aria-label={col.title}>
+            <p class="col-title">{col.title}</p>
+            {col.links.map((l) => (
+              <a href={l.href}>{l.label}</a>
+            ))}
+          </nav>
+        ))
+      }
+    </div>
+
+    <p class="legal">
+      © 2026 FiscoRD · Soluciones Técnicas Profesionales STP S.R.L. ·
+      <span class="fiscal">RNC 1-32-94305-8</span> · Santo Domingo, República
+      Dominicana
+    </p>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+  .inner {
+    padding-block: 56px 34px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  .lede {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    max-width: 300px;
+    line-height: 1.6;
+  }
+  .disclaimer {
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    margin-top: 14px;
+    line-height: 1.6;
+    max-width: 330px;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .col-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .col a {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .col a:hover {
+    color: var(--aqua);
+  }
+  .legal {
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 11.5px;
+    color: var(--ink-faint);
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

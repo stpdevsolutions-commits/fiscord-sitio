@@ -1,0 +1,30 @@
+---
+// Divisor troquelado a todo el ancho — la página "se rompe" como un
+// comprobante de papel térmico. La firma visual de la marca.
+interface Props {
+  top?: string;
+  bottom?: string;
+}
+const { top = 'var(--paper)', bottom = 'var(--paper)' } = Astro.props;
+---
+
+<div class="tear" style={`--top:${top};--bottom:${bottom};`} aria-hidden="true">
+  <div class="teeth"></div>
+</div>
+
+<style>
+  .tear {
+    position: relative;
+    height: 22px;
+    background: var(--top);
+  }
+  .teeth {
+    position: absolute;
+    inset: 0;
+    background: var(--bottom);
+    -webkit-mask: radial-gradient(circle 11px at 11px 0, transparent 10px, #000 10.5px) 0 0 / 22px
+      22px repeat-x;
+    mask: radial-gradient(circle 11px at 11px 0, transparent 10px, #000 10.5px) 0 0 / 22px 22px
+      repeat-x;
+  }
+</style>

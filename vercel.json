@@ -1,0 +1,36 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "rewrites": [
+    { "source": "/app/:path*",           "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/app/:path*" },
+    { "source": "/assets/:path*",         "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/assets/:path*" },
+    { "source": "/auth/:path*",           "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/auth/:path*" },
+    { "source": "/superadmin/:path*",     "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/superadmin/:path*" },
+    { "source": "/login",                 "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/login" },
+    { "source": "/register",              "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/register" },
+    { "source": "/accept-invite",         "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/accept-invite" },
+    { "source": "/reset-password",        "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/reset-password" },
+    { "source": "/pending",               "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/pending" },
+    { "source": "/suspended",             "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/suspended" },
+    { "source": "/manifest.json",         "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/manifest.json" },
+    { "source": "/apple-touch-icon.png",  "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/apple-touch-icon.png" },
+    { "source": "/firebase-messaging-sw.js", "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/firebase-messaging-sw.js" },
+    { "source": "/terms",                 "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/terms" },
+    { "source": "/privacy",               "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/privacy" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
+        }
+      ]
+    }
+  ]
+}

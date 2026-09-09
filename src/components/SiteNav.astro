@@ -1,0 +1,125 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+
+interface Props {
+  active?: string;
+}
+const { active } = Astro.props;
+
+const LINKS = [
+  { href: '/funciones', id: 'funciones', label: 'Funciones' },
+  { href: '/contadores', id: 'contadores', label: 'Para contadores' },
+  { href: '/precios', id: 'precios', label: 'Precios' },
+  { href: '/recursos', id: 'recursos', label: 'Recursos' },
+];
+---
+
+<header class="nav glass">
+  <div class="wrap bar">
+    <a href="/" class="brand" aria-label="FiscoRD — inicio">
+      <Logo size={30} word={19} />
+    </a>
+
+    <nav class="links" aria-label="Principal">
+      {
+        LINKS.map((l) => (
+          <a
+            href={l.href}
+            class:list={['link', { on: l.id === active }]}
+            aria-current={l.id === active ? 'page' : undefined}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="actions">
+      <a href="/login" class="signin">Iniciar sesión</a>
+      <Button href="/register" size="sm">Crear cuenta gratis</Button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding-block: 14px;
+  }
+  .brand {
+    flex-shrink: 0;
+  }
+  .links {
+    display: flex;
+    gap: 2px;
+  }
+  .link {
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .link:hover {
+    color: var(--aqua);
+    background: var(--mint-soft);
+  }
+  .link.on {
+    color: var(--aqua);
+    background: var(--mint-soft);
+    font-weight: 600;
+  }
+  .actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .signin {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .signin:hover {
+    color: var(--aqua);
+  }
+
+  /* Móvil: la marca arriba, los links en una tira que hace scroll,
+     y solo el botón de crear cuenta (el "iniciar sesión" cabe en el menú). */
+  @media (max-width: 860px) {
+    .bar {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .links {
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .links::-webkit-scrollbar {
+      display: none;
+    }
+    .link {
+      white-space: nowrap;
+    }
+    .actions {
+      gap: 12px;
+    }
+  }
+  @media (max-width: 420px) {
+    .signin {
+      display: none;
+    }
+  }
+</style>

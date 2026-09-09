@@ -1,0 +1,55 @@
+---
+import Button from './Button.astro';
+interface Props {
+  title: string;
+  blurb: string;
+}
+const { title, blurb } = Astro.props;
+---
+
+<section class="obra">
+  <div class="wrap">
+    <p class="tag">En preparación</p>
+    <h1>{title}</h1>
+    <p class="blurb">{blurb}</p>
+    <div class="cta">
+      <Button href="/register">Crear cuenta gratis</Button>
+      <Button href="/" variant="ghost">Volver al inicio</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .obra .wrap {
+    max-width: 720px;
+    padding-block: 90px 110px;
+  }
+  .tag {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--aqua);
+  }
+  h1 {
+    font-size: 40px;
+    letter-spacing: -0.03em;
+    margin-top: 10px;
+    line-height: 1.1;
+  }
+  .blurb {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin-top: 16px;
+  }
+  .cta {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 30px;
+    }
+  }
+</style>

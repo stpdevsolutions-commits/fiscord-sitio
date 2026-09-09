@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="aquaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B7684"/>
+      <stop offset="100%" stop-color="#085362"/>
+    </linearGradient>
+  </defs>
+  <!-- Teja de marca (las esquinas del icono real las redondea el SO) -->
+  <rect width="512" height="512" rx="116" fill="url(#aquaGrad)"/>
+  <!-- Símbolo "F" deconstruido, en claro. Coords base 0..100 escaladas x3 y centradas -->
+  <g fill="#F4F8F7" transform="translate(106 106) scale(3)">
+    <rect x="27" y="22" width="47" height="14" rx="7"/>
+    <rect x="27" y="43" width="31" height="14" rx="7"/>
+    <rect x="63.5" y="43" width="14" height="31" rx="7" transform="rotate(12 70.5 58.5)"/>
+    <rect x="29" y="63" width="14" height="31" rx="7" transform="rotate(12 36 78.5)"/>
+  </g>
+</svg>
