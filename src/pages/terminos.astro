@@ -1,16 +1,327 @@
 ---
-import Base from '../layouts/Base.astro';
-import EnObra from '../components/EnObra.astro';
+import Doc from '../layouts/Doc.astro';
+
+const toc = [
+  { id: 's1', label: '1. Objeto' },
+  { id: 's2', label: '2. Definiciones' },
+  { id: 's3', label: '3. Capacidad' },
+  { id: 's4', label: '4. Registro' },
+  { id: 's5', label: '5. Servicio y licencia' },
+  { id: 's6', label: '6. Disponibilidad' },
+  { id: 's7', label: '7. Planes y pagos' },
+  { id: 's8', label: '8. Cancelación' },
+  { id: 's9', label: '9. IA' },
+  { id: 's10', label: '10. Uso aceptable' },
+  { id: 's11', label: '11. Propiedad intelectual' },
+  { id: 's12', label: '12. Terminación' },
+  { id: 's13', label: '13. Retención' },
+  { id: 's14', label: '14. Fuerza mayor' },
+  { id: 's15', label: '15. Responsabilidad' },
+  { id: 's16', label: '16. Indemnización' },
+  { id: 's17', label: '17. Privacidad' },
+  { id: 's18', label: '18. Comunicaciones' },
+  { id: 's19', label: '19. Modificaciones' },
+  { id: 's20', label: '20. Ley aplicable' },
+  { id: 's21', label: '21. Divisibilidad' },
+  { id: 's22', label: '22. Contacto' },
+];
 ---
 
-<Base
-  title="Términos y condiciones"
+<Doc
+  title="Términos y Condiciones de Uso"
   description="Términos y condiciones de uso de FiscoRD, operado por Soluciones Técnicas Profesionales STP S.R.L. (RNC 1-32-94305-8)."
-  active={undefined}
+  kicker="Legal"
+  heading="Términos y Condiciones de Uso"
+  updated="29 de agosto de 2026"
   path="/terminos"
+  active={undefined}
+  toc={toc}
 >
-  <EnObra
-    title="Términos y condiciones"
-    blurb="Estamos portando el documento completo (22 secciones) al sitio. Mientras tanto, la versión vigente se muestra dentro de la aplicación al crear una cuenta."
-  />
-</Base>
+  <h2 id="s1">1. Objeto y aceptación</h2>
+  <p>
+    Estos Términos y Condiciones de Uso (los «Términos») regulan el acceso y uso
+    de la plataforma FiscoRD, disponible en fiscord.lat y sus aplicaciones
+    móviles asociadas (en conjunto, el «Servicio»). FiscoRD es un producto
+    desarrollado bajo la marca STP DEV, operado por <b>Soluciones Técnicas
+    Profesionales STP S.R.L.</b> (RNC 1-32-94305-8) («la Compañía»,
+    «nosotros»), sociedad registrada conforme a las leyes de la República
+    Dominicana, con domicilio en Santo Domingo.
+  </p>
+  <p>
+    Al crear una cuenta, marcar la casilla de aceptación durante el registro o
+    utilizar el Servicio de cualquier forma, usted («el Usuario») declara haber
+    leído, entendido y aceptado estos Términos en su totalidad, así como nuestra
+    <a href="/privacidad">Política de Privacidad</a>. Si actúa en representación
+    de una empresa, declara tener autoridad para vincularla. Si no está de
+    acuerdo, no debe crear una cuenta ni utilizar el Servicio.
+  </p>
+
+  <h2 id="s2">2. Definiciones</h2>
+  <ul>
+    <li><b>Servicio:</b> la plataforma web y las aplicaciones móviles de FiscoRD, con todas sus funcionalidades.</li>
+    <li><b>Cuenta:</b> el registro individual que permite a un Usuario acceder al Servicio.</li>
+    <li><b>Empresa:</b> el perfil de negocio (identificado por su RNC) que un Usuario crea o al que se vincula.</li>
+    <li><b>Contenido del Usuario:</b> toda información, documento, imagen o dato que el Usuario ingresa, sube o genera (facturas, comprobantes, datos de proveedores).</li>
+    <li><b>NCF / e-CF:</b> Número de Comprobante Fiscal / Comprobante Fiscal Electrónico, según la normativa vigente de la DGII.</li>
+    <li><b>Plan:</b> el nivel de suscripción contratado (Free, Pyme o Empresarial), con sus límites y funcionalidades.</li>
+  </ul>
+
+  <h2 id="s3">3. Capacidad para contratar</h2>
+  <p>
+    El Servicio está dirigido a personas mayores de edad con capacidad legal para
+    contratar conforme a las leyes de la República Dominicana, y a personas
+    jurídicas debidamente representadas. FiscoRD no está dirigido a menores de
+    edad; si detectamos que una cuenta fue creada por un menor sin la debida
+    representación legal, nos reservamos el derecho de suspenderla.
+  </p>
+
+  <h2 id="s4">4. Registro de cuenta</h2>
+  <p>
+    Para utilizar el Servicio debe crear una cuenta con información veraz, exacta
+    y actualizada. Usted es el único responsable de mantener la confidencialidad
+    de sus credenciales y de toda actividad bajo su cuenta, haya sido o no
+    autorizada. Debe notificarnos de inmediato a
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a> si sospecha de un
+    uso no autorizado o de una vulneración de seguridad. FiscoRD no es
+    responsable por pérdidas derivadas del incumplimiento de esta obligación de
+    custodia, sin perjuicio de nuestras obligaciones de seguridad conforme a la
+    Política de Privacidad.
+  </p>
+
+  <h2 id="s5">5. Descripción del Servicio y licencia de uso</h2>
+  <p>FiscoRD es una plataforma de gestión fiscal para empresas y contadores dominicanos, que incluye:</p>
+  <ul>
+    <li>Registro y organización de facturas y comprobantes fiscales (NCF/e-CF)</li>
+    <li>Validación de RNC contra el padrón público de contribuyentes de la DGII</li>
+    <li>Validación de NCF/e-CF contra los servicios de consulta de la DGII</li>
+    <li>Generación de reportes de apoyo para la declaración 606 (el 607 y el IT-1 estarán disponibles próximamente)</li>
+    <li>Escaneo de facturas mediante inteligencia artificial (reconocimiento óptico de datos)</li>
+    <li>Gestión de equipos y acceso de contadores externos a múltiples empresas</li>
+  </ul>
+  <p>
+    Sujeto al cumplimiento de estos Términos y al pago de las cuotas aplicables,
+    FiscoRD le otorga una licencia limitada, no exclusiva, intransferible y
+    revocable para acceder y usar el Servicio únicamente para sus fines internos
+    de negocio. Esta licencia no incluye reventa, sublicencia ni explotación
+    comercial del Servicio, ni la copia de su interfaz, código o funcionalidad.
+  </p>
+  <div class="warn">
+    <b>Importante:</b> FiscoRD es una herramienta de registro, validación y
+    organización de información fiscal. No reemplaza la obligación del
+    contribuyente de presentar sus declaraciones ante la DGII, no constituye
+    asesoría contable, legal ni tributaria, y no genera declaraciones juradas
+    oficiales por sí sola. Los reportes generados deben ser revisados y
+    presentados por el contribuyente o su contador antes de someterlos a la DGII.
+    FiscoRD no verifica la exactitud de los datos que el Usuario ingresa
+    manualmente ni de los documentos que escanea.
+  </div>
+
+  <h2 id="s6">6. Disponibilidad del Servicio y dependencia de terceros</h2>
+  <p>
+    Procuramos que el Servicio esté disponible de forma continua, pero no
+    garantizamos un porcentaje específico de disponibilidad. Puede sufrir
+    interrupciones por mantenimiento, actualizaciones, fallas de proveedores de
+    infraestructura o fuerza mayor.
+  </p>
+  <p>
+    La validación de RNC y NCF/e-CF depende de los servicios públicos de la DGII,
+    sobre los cuales no tenemos control. Si el portal de la DGII no está
+    disponible o cambia su formato de respuesta, la validación puede no
+    completarse temporalmente; esto no exime al Usuario de sus obligaciones
+    fiscales, y FiscoRD no es responsable por las consecuencias de dicha
+    indisponibilidad. Puede seguir registrando comprobantes en modo «sin
+    validar» durante estas interrupciones.
+  </p>
+
+  <h2 id="s7">7. Planes, precios y facturación</h2>
+  <ul>
+    <li><b>Plan Free:</b> hasta 30 facturas al mes, sin cargo, sin vencimiento, para una (1) empresa.</li>
+    <li><b>Plan Pyme:</b> US$ 12/mes o US$ 120/año — facturas ilimitadas, hasta 3 usuarios, 1 contador vinculado.</li>
+    <li><b>Plan Empresarial:</b> US$ 25/mes o US$ 250/año — facturas ilimitadas, usuarios y contadores ilimitados, hasta 5 empresas bajo un mismo pago.</li>
+  </ul>
+  <p>
+    Los pagos se procesan a través de PayPal. Al suscribirse a un Plan Pyme o
+    Empresarial, usted autoriza a PayPal a realizar cobros recurrentes
+    automáticos según el ciclo (mensual o anual) que seleccione, hasta que
+    cancele la suscripción. FiscoRD no almacena los datos completos de su tarjeta
+    o cuenta de pago; estos son gestionados por PayPal conforme a sus propias
+    condiciones.
+  </p>
+  <p>
+    Si un cobro recurrente falla, PayPal reintentará según su propio calendario.
+    Si el pago permanece pendiente por más de tres (3) días, su suscripción se
+    degrada automáticamente al Plan Free, conservando sus datos pero aplicando
+    los límites de dicho plan, hasta que se regularice el pago. Los precios
+    pueden modificarse con al menos 30 días de aviso previo por correo para
+    suscripciones activas; el nuevo precio aplica desde el siguiente ciclo de
+    facturación.
+  </p>
+
+  <h2 id="s8">8. Cancelación y derecho de retracto</h2>
+  <p>
+    Puede cancelar su suscripción en cualquier momento desde Ajustes · Plan
+    dentro de la aplicación. La cancelación es efectiva al final del período ya
+    facturado; no se realizan reembolsos proporcionales por el tiempo no
+    utilizado dentro de un período ya pagado, salvo lo indicado a continuación.
+  </p>
+  <p>
+    Conforme a la Ley 358-05 sobre Protección de los Derechos del Consumidor, si
+    usted es consumidor y contrata un Plan de pago por primera vez, dispone de
+    cinco (5) días hábiles desde la contratación para desistir sin penalización,
+    siempre que no haya hecho uso efectivo de las funcionalidades exclusivas de
+    dicho plan (por ejemplo, facturas por encima del límite del Plan Free). Para
+    ejercerlo, escriba a
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>. Este derecho no
+    aplica a renovaciones de una suscripción ya utilizada.
+  </p>
+
+  <h2 id="s9">9. Uso de Inteligencia Artificial</h2>
+  <p>
+    El Servicio ofrece una función opcional de escaneo de facturas que utiliza
+    modelos de IA de terceros (Anthropic Claude, con Google Gemini como respaldo)
+    para extraer datos de las imágenes que usted sube (proveedor, RNC, NCF,
+    montos, fecha).
+  </p>
+  <ul>
+    <li>Esta función es <b>opcional</b>: usted puede registrar facturas manualmente sin usarla.</li>
+    <li>La imagen se envía al proveedor de IA únicamente para extraer los datos solicitados; conforme a la política de dichos proveedores para uso vía API, las imágenes no se usan para entrenar sus modelos ni se almacenan más allá del tiempo necesario para procesar la solicitud.</li>
+    <li>Los datos extraídos por IA son <b>una sugerencia, no un hecho verificado</b>. Usted debe revisar y corregir la información antes de guardar el comprobante — la pantalla de escaneo se lo permite explícitamente.</li>
+    <li>FiscoRD no es responsable por errores fiscales, contables o de negocio que resulten de guardar sin revisar un dato sugerido por la IA.</li>
+    <li>El uso de esta función está sujeto a un límite de solicitudes por hora para prevenir abuso.</li>
+  </ul>
+
+  <h2 id="s10">10. Uso aceptable</h2>
+  <p>Usted se compromete a no utilizar el Servicio para:</p>
+  <ul>
+    <li>Registrar comprobantes fiscales falsos, alterados o que no correspondan a operaciones reales</li>
+    <li>Evadir obligaciones tributarias, facilitar fraude fiscal o lavado de activos</li>
+    <li>Acceder, o intentar acceder, a datos de otras empresas o usuarios sin autorización</li>
+    <li>Intentar vulnerar, deshabilitar o sobrecargar la seguridad o infraestructura del Servicio</li>
+    <li>Realizar ingeniería inversa, descompilar o extraer el código fuente del Servicio</li>
+    <li>Realizar scraping masivo o uso automatizado no autorizado de la plataforma o su API</li>
+    <li>Suplantar la identidad de otra persona o entidad</li>
+    <li>Subir contenido que infrinja derechos de terceros o sea ilícito conforme a las leyes dominicanas</li>
+  </ul>
+  <p>
+    El incumplimiento puede resultar en la suspensión o terminación inmediata de
+    su cuenta, sin perjuicio de las acciones legales que correspondan.
+  </p>
+
+  <h2 id="s11">11. Propiedad intelectual</h2>
+  <p>
+    El Servicio, su código fuente, diseño, las marcas «FiscoRD» y «STP DEV»,
+    logotipos y demás elementos son propiedad de la Compañía o de sus
+    licenciantes, protegidos por las leyes de propiedad intelectual de la
+    República Dominicana (incluyendo su registro ante ONAPI) y los tratados
+    internacionales aplicables. Estos Términos no le otorgan ningún derecho de
+    propiedad sobre el Servicio más allá de la licencia de uso limitada de la
+    Sección 5. El Contenido del Usuario sigue siendo de su propiedad; al usarlo,
+    usted nos otorga una licencia limitada para almacenarlo, procesarlo y
+    mostrárselo con el único fin de prestarle el Servicio.
+  </p>
+
+  <h2 id="s12">12. Suspensión y terminación</h2>
+  <p>
+    <b>Por impago:</b> si un cobro recurrente no puede procesarse, su plan se
+    degrada automáticamente a Free conforme a la Sección 7, sin eliminar sus
+    datos. <b>Por incumplimiento:</b> podemos suspender o cancelar su cuenta, con
+    o sin previo aviso, si detectamos un uso que infrinja la Sección 10,
+    represente un riesgo de seguridad, o incumpla materialmente estos Términos.
+    <b>Por el Usuario:</b> puede dejar de usar el Servicio y solicitar el cierre
+    de su cuenta en cualquier momento escribiendo a
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>.
+  </p>
+
+  <h2 id="s13">13. Retención de datos</h2>
+  <p>
+    Sus facturas y comprobantes registrados se conservan por un período de hasta
+    10 años, en línea con los plazos de conservación de documentos fiscales
+    aplicables en la República Dominicana. Al cancelar su suscripción o solicitar
+    el cierre de su cuenta, sus datos permanecen disponibles para consulta
+    durante 90 días adicionales, transcurridos los cuales podrán ser eliminados o
+    anonimizados, salvo obligación legal de conservarlos por más tiempo.
+  </p>
+
+  <h2 id="s14">14. Fuerza mayor</h2>
+  <p>
+    Ninguna de las partes será responsable por el incumplimiento o retraso en sus
+    obligaciones cuando se deba a causas fuera de su control razonable, incluyendo
+    fallas de infraestructura de terceros (proveedores de nube, DGII, procesadores
+    de pago), desastres naturales, cortes de energía o telecomunicaciones, actos
+    gubernamentales o pandemias.
+  </p>
+
+  <h2 id="s15">15. Limitación de responsabilidad</h2>
+  <p>En la máxima medida permitida por la ley, FiscoRD no será responsable por:</p>
+  <ul>
+    <li>Errores, inexactitudes o indisponibilidad de la información del padrón de la DGII u otros servicios públicos de terceros</li>
+    <li>Decisiones fiscales, contables o de negocio tomadas con base en los reportes generados por el Servicio</li>
+    <li>Interrupciones del Servicio por causas fuera de nuestro control razonable</li>
+    <li>Sanciones, multas o recargos de la DGII derivados del uso incorrecto de la plataforma, de datos ingresados erróneamente por el Usuario, o del incumplimiento de sus obligaciones fiscales</li>
+    <li>Pérdida de datos causada por el propio Usuario (eliminación accidental, credenciales comprometidas por negligencia)</li>
+    <li>Daños indirectos, incidentales, especiales o consecuenciales derivados del uso o la imposibilidad de uso del Servicio</li>
+  </ul>
+  <p>
+    La responsabilidad total de FiscoRD frente al Usuario por cualquier reclamo
+    relacionado con el Servicio no excederá el monto pagado por el Usuario en los
+    doce (12) meses previos al hecho que dio origen al reclamo.
+  </p>
+
+  <h2 id="s16">16. Indemnización</h2>
+  <p>
+    Usted acepta indemnizar y mantener indemne a la Compañía frente a cualquier
+    reclamo, daño o gasto (incluyendo honorarios legales razonables) que surja de:
+    (i) su incumplimiento de estos Términos; (ii) su uso indebido del Servicio; o
+    (iii) su violación de derechos de terceros o de la normativa fiscal aplicable.
+  </p>
+
+  <h2 id="s17">17. Privacidad y protección de datos</h2>
+  <p>
+    El tratamiento de sus datos personales y empresariales se rige por nuestra
+    <a href="/privacidad">Política de Privacidad</a>, que forma parte integral de
+    estos Términos.
+  </p>
+
+  <h2 id="s18">18. Comunicaciones</h2>
+  <p>
+    Al registrarse, usted acepta recibir correos electrónicos transaccionales
+    necesarios para la prestación del Servicio (confirmación de cuenta, recibos de
+    pago, alertas de vencimiento de plan, notificaciones de equipo). No enviamos
+    correos publicitarios ni compartimos su correo con terceros para fines de
+    mercadeo.
+  </p>
+
+  <h2 id="s19">19. Modificaciones a estos Términos</h2>
+  <p>
+    Nos reservamos el derecho de modificar estos Términos en cualquier momento.
+    Los cambios materiales serán notificados con al menos 15 días de anticipación
+    mediante correo electrónico a la dirección registrada. El uso continuado del
+    Servicio después de dicho aviso constituye la aceptación de los Términos
+    modificados.
+  </p>
+
+  <h2 id="s20">20. Ley aplicable y resolución de disputas</h2>
+  <p>
+    Estos Términos se rigen e interpretan conforme a las leyes de la República
+    Dominicana. Para cualquier controversia, las partes se someten a la
+    jurisdicción de los tribunales competentes de Santo Domingo, Distrito
+    Nacional. Antes de iniciar cualquier acción legal, las partes procurarán de
+    buena fe resolver la controversia de forma directa, contactando a
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>.
+  </p>
+
+  <h2 id="s21">21. Divisibilidad y acuerdo completo</h2>
+  <p>
+    Si alguna disposición fuera declarada inválida o inaplicable, se interpretará
+    de forma que refleje lo más fielmente posible la intención original, y el
+    resto permanecerá en pleno vigor. Estos Términos, junto con la Política de
+    Privacidad, constituyen el acuerdo completo entre usted y FiscoRD respecto al
+    Servicio.
+  </p>
+
+  <h2 id="s22">22. Contacto</h2>
+  <p>
+    Para consultas, reclamos o notificaciones relacionadas con estos Términos:
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>
+  </p>
+</Doc>

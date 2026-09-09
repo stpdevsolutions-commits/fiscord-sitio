@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://fiscord.lat',
   trailingSlash: 'never',
+  // Conserva el espacio entre texto y enlaces inline en la prosa legal
+  // (con compressHTML se pega "nuestraPolítica de Privacidad").
+  compressHTML: false,
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/borrador'),

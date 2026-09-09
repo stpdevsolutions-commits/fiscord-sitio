@@ -1,16 +1,185 @@
 ---
-import Base from '../layouts/Base.astro';
-import EnObra from '../components/EnObra.astro';
+import Doc from '../layouts/Doc.astro';
+
+const toc = [
+  { id: 's1', label: '1. Responsable' },
+  { id: 's2', label: '2. Datos que recopilamos' },
+  { id: 's3', label: '3. Base legal y finalidad' },
+  { id: 's4', label: '4. Con quién compartimos' },
+  { id: 's5', label: '5. IA' },
+  { id: 's6', label: '6. Transferencias' },
+  { id: 's7', label: '7. Seguridad' },
+  { id: 's8', label: '8. Retención' },
+  { id: 's9', label: '9. Derechos ARCO' },
+  { id: 's10', label: '10. Menores' },
+  { id: 's11', label: '11. Cookies' },
+  { id: 's12', label: '12. Cambios' },
+  { id: 's13', label: '13. Contacto' },
+];
 ---
 
-<Base
-  title="Política de privacidad"
-  description="Cómo FiscoRD (Soluciones Técnicas Profesionales STP S.R.L., RNC 1-32-94305-8) trata los datos de tu empresa y tus comprobantes fiscales."
-  active={undefined}
+<Doc
+  title="Política de Privacidad"
+  description="Cómo FiscoRD (Soluciones Técnicas Profesionales STP S.R.L., RNC 1-32-94305-8) trata los datos de tu empresa y tus comprobantes fiscales, conforme a la Ley 172-13."
+  kicker="Legal"
+  heading="Política de Privacidad"
+  updated="29 de agosto de 2026"
   path="/privacidad"
+  active={undefined}
+  toc={toc}
 >
-  <EnObra
-    title="Política de privacidad"
-    blurb="Estamos portando el documento completo (13 secciones) al sitio. Mientras tanto, la versión vigente se muestra dentro de la aplicación al crear una cuenta."
-  />
-</Base>
+  <h2 id="s1">1. Responsable del tratamiento</h2>
+  <p>
+    FiscoRD es un producto desarrollado bajo la marca STP DEV, operado por
+    <b>Soluciones Técnicas Profesionales STP S.R.L.</b> (RNC 1-32-94305-8) («la
+    Compañía»), con domicilio en Santo Domingo, República Dominicana. La Compañía
+    es el responsable del tratamiento de sus datos personales conforme a la Ley
+    172-13 sobre Protección de Datos de Carácter Personal. Puede contactarnos en
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a> para cualquier
+    consulta relacionada con esta política.
+  </p>
+
+  <h2 id="s2">2. Datos que recopilamos</h2>
+  <ul>
+    <li><b>Datos de cuenta:</b> nombre completo, correo electrónico, contraseña (nunca en texto plano — se guarda cifrada mediante un algoritmo de hash de un solo sentido).</li>
+    <li><b>Datos empresariales:</b> nombre de la empresa, RNC, dirección, teléfono, plan contratado.</li>
+    <li><b>Datos fiscales:</b> comprobantes (NCF/e-CF) que usted registra, RNC de proveedores/clientes, montos, ITBIS, fechas, y las fotos de las facturas que sube para escaneo.</li>
+    <li><b>Datos de pago:</b> únicamente el identificador de suscripción y el estado de sus pagos; los datos completos de su tarjeta o cuenta PayPal nunca pasan por nuestros servidores.</li>
+    <li><b>Datos de uso:</b> páginas y funciones utilizadas, fecha del último inicio de sesión, errores del sistema.</li>
+    <li><b>Datos del dispositivo:</b> tipo de dispositivo, sistema operativo, navegador, y en la app móvil, un token de notificación push (usado únicamente para enviarle alertas de la propia app).</li>
+  </ul>
+
+  <h2 id="s3">3. Base legal y finalidad del tratamiento</h2>
+  <p>
+    Tratamos sus datos personales con base en: (i) la ejecución del contrato de
+    prestación de servicio que acepta al registrarse; (ii) su consentimiento
+    explícito, cuando corresponda; y (iii) el cumplimiento de obligaciones
+    legales aplicables. Utilizamos sus datos para:
+  </p>
+  <ul>
+    <li>Proveer, operar y mejorar el Servicio</li>
+    <li>Validar RNC y NCF/e-CF contra los servicios públicos de la DGII</li>
+    <li>Procesar el escaneo de facturas mediante inteligencia artificial (ver Sección 5)</li>
+    <li>Generar reportes fiscales para su uso interno</li>
+    <li>Procesar pagos y gestionar su suscripción</li>
+    <li>Enviar notificaciones transaccionales (confirmación de pago, alertas de vencimiento de plan, invitaciones de equipo)</li>
+    <li>Detectar y prevenir fraude, abuso o uso indebido de la plataforma</li>
+    <li>Cumplir obligaciones legales, contables y fiscales aplicables a la Compañía</li>
+  </ul>
+  <div class="note">
+    <b>No utilizamos sus datos para publicidad, no los vendemos a terceros, y no
+    enviamos correos de mercadeo no solicitados.</b>
+  </div>
+
+  <h2 id="s4">4. Con quién compartimos sus datos</h2>
+  <p>
+    Sus datos pueden ser compartidos únicamente con los siguientes encargados del
+    tratamiento, cada uno limitado a la finalidad indicada:
+  </p>
+  <ul>
+    <li><b>Supabase:</b> base de datos, autenticación y almacenamiento de archivos (infraestructura sobre AWS, región us-east-1, Estados Unidos).</li>
+    <li><b>PayPal:</b> procesador de pagos — recibe únicamente los datos necesarios para procesar su suscripción.</li>
+    <li><b>Resend:</b> proveedor de correo transaccional — recibe su correo electrónico solo para el envío de los mensajes descritos en la Sección 3.</li>
+    <li><b>Anthropic (Claude) y Google (Gemini, como respaldo):</b> procesamiento de las imágenes de facturas que usted decide escanear, únicamente para extraer los datos solicitados.</li>
+    <li><b>Google Firebase:</b> envío de notificaciones push en la aplicación móvil y web.</li>
+    <li><b>Sentry:</b> monitoreo de errores técnicos, con filtrado automático de contraseñas, tokens y datos sensibles antes de su envío.</li>
+    <li><b>Autoridades competentes:</b> cuando sea requerido por ley, mandato judicial o requerimiento de la DGII.</li>
+  </ul>
+  <p>
+    No compartimos sus datos fiscales con otras empresas usuarias de FiscoRD,
+    salvo los contadores que usted mismo autorice a acceder a su empresa.
+  </p>
+
+  <h2 id="s5">5. Uso de Inteligencia Artificial</h2>
+  <p>
+    Si usted utiliza la función de escaneo de facturas, la imagen se envía a un
+    proveedor de IA de terceros (Anthropic Claude, con Google Gemini como
+    respaldo) exclusivamente para extraer los datos de la factura. Conforme a los
+    términos de uso vía API de dichos proveedores, las imágenes enviadas no se
+    utilizan para entrenar sus modelos y no se conservan por el proveedor una vez
+    procesada la solicitud. FiscoRD sí conserva la imagen original (si usted
+    decide guardarla junto al comprobante) bajo las mismas condiciones de
+    seguridad y retención que el resto de sus datos fiscales.
+  </p>
+
+  <h2 id="s6">6. Transferencias internacionales</h2>
+  <p>
+    Nuestra infraestructura (base de datos, almacenamiento, procesamiento de IA,
+    envío de correo y notificaciones) está alojada en servidores fuera de la
+    República Dominicana, principalmente en Estados Unidos. Al usar el Servicio,
+    usted acepta esta transferencia internacional de datos, necesaria para la
+    prestación del Servicio. Exigimos a nuestros proveedores el cumplimiento de
+    estándares de seguridad adecuados mediante acuerdos de procesamiento de datos.
+  </p>
+
+  <h2 id="s7">7. Seguridad</h2>
+  <ul>
+    <li>Cifrado en tránsito mediante HTTPS/TLS en todas las comunicaciones</li>
+    <li>Cifrado en reposo de la base de datos</li>
+    <li>Contraseñas almacenadas exclusivamente como hash, nunca en texto plano</li>
+    <li>Control de acceso a nivel de fila (Row Level Security): una empresa nunca puede consultar los datos de otra por diseño del sistema, no solo por configuración de la interfaz</li>
+    <li>Registro de auditoría de acciones administrativas y eventos de seguridad relevantes</li>
+    <li>Revisiones periódicas de seguridad del código y la infraestructura</li>
+  </ul>
+  <p>
+    Ninguna plataforma puede garantizar seguridad absoluta. Si llegáramos a
+    detectar una vulneración que comprometa sus datos personales, se lo
+    notificaremos sin dilación indebida conforme a lo exigido por la Ley 172-13.
+  </p>
+
+  <h2 id="s8">8. Retención y eliminación de datos</h2>
+  <p>
+    Sus facturas y comprobantes se conservan por hasta 10 años, en línea con los
+    plazos de conservación de documentos fiscales aplicables en la República
+    Dominicana. Los datos de cuenta y de la empresa se conservan mientras su
+    cuenta esté activa, y se eliminan o anonimizan 90 días después de solicitar el
+    cierre de su cuenta, salvo obligación legal de conservarlos por más tiempo.
+  </p>
+
+  <h2 id="s9">9. Sus derechos (ARCO)</h2>
+  <p>
+    Conforme a la Ley 172-13 de Protección de Datos Personales de la República
+    Dominicana, usted tiene derecho a:
+  </p>
+  <ul>
+    <li><b>Acceso:</b> conocer qué datos personales suyos tratamos.</li>
+    <li><b>Rectificación:</b> corregir datos inexactos o incompletos.</li>
+    <li><b>Cancelación:</b> solicitar la eliminación de sus datos, sujeto a las obligaciones legales de retención de la Sección 8.</li>
+    <li><b>Oposición:</b> oponerse al tratamiento de sus datos para finalidades específicas.</li>
+    <li><b>Portabilidad:</b> solicitar sus datos fiscales en un formato estructurado (CSV o Excel), que también puede exportar usted mismo desde la aplicación en cualquier momento.</li>
+  </ul>
+  <p>
+    Para ejercer estos derechos, escriba a
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a> desde el correo
+    asociado a su cuenta. Responderemos dentro de un plazo razonable, y en todo
+    caso dentro de los plazos que establezca la ley aplicable.
+  </p>
+
+  <h2 id="s10">10. Menores de edad</h2>
+  <p>
+    El Servicio no está dirigido a menores de edad y no recopilamos
+    deliberadamente datos de menores. Si tiene conocimiento de que un menor nos ha
+    proporcionado datos personales, contáctenos para eliminarlos.
+  </p>
+
+  <h2 id="s11">11. Cookies y tecnologías similares</h2>
+  <p>
+    FiscoRD utiliza únicamente cookies y almacenamiento local esenciales para el
+    funcionamiento del Servicio (sesión de usuario, preferencia de tema
+    claro/oscuro, empresa activa seleccionada). No utilizamos cookies de rastreo
+    publicitario ni de redes sociales.
+  </p>
+
+  <h2 id="s12">12. Cambios a esta política</h2>
+  <p>
+    Le notificaremos por correo electrónico con al menos 15 días de anticipación
+    ante cambios materiales. La fecha de «Actualizado el» en la parte superior de
+    esta página siempre refleja la versión vigente.
+  </p>
+
+  <h2 id="s13">13. Contacto</h2>
+  <p>
+    Consultas sobre privacidad o ejercicio de derechos:
+    <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>
+  </p>
+</Doc>
