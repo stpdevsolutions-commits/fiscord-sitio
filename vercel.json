@@ -2,21 +2,21 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
   "rewrites": [
-    { "source": "/app/:path*",           "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/app/:path*" },
-    { "source": "/assets/:path*",         "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/assets/:path*" },
-    { "source": "/auth/:path*",           "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/auth/:path*" },
-    { "source": "/superadmin/:path*",     "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/superadmin/:path*" },
-    { "source": "/login",                 "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/login" },
-    { "source": "/register",              "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/register" },
-    { "source": "/accept-invite",         "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/accept-invite" },
-    { "source": "/reset-password",        "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/reset-password" },
-    { "source": "/pending",               "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/pending" },
-    { "source": "/suspended",             "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/suspended" },
-    { "source": "/manifest.json",         "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/manifest.json" },
-    { "source": "/apple-touch-icon.png",  "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/apple-touch-icon.png" },
-    { "source": "/firebase-messaging-sw.js", "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/firebase-messaging-sw.js" },
-    { "source": "/terms",                 "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/terms" },
-    { "source": "/privacy",               "destination": "https://fisco-rd-fiscorddos-projects.vercel.app/privacy" }
+    { "source": "/app/:path*",           "destination": "https://interno.fiscord.lat/app/:path*" },
+    { "source": "/assets/:path*",         "destination": "https://interno.fiscord.lat/assets/:path*" },
+    { "source": "/auth/:path*",           "destination": "https://interno.fiscord.lat/auth/:path*" },
+    { "source": "/superadmin/:path*",     "destination": "https://interno.fiscord.lat/superadmin/:path*" },
+    { "source": "/login",                 "destination": "https://interno.fiscord.lat/login" },
+    { "source": "/register",              "destination": "https://interno.fiscord.lat/register" },
+    { "source": "/accept-invite",         "destination": "https://interno.fiscord.lat/accept-invite" },
+    { "source": "/reset-password",        "destination": "https://interno.fiscord.lat/reset-password" },
+    { "source": "/pending",               "destination": "https://interno.fiscord.lat/pending" },
+    { "source": "/suspended",             "destination": "https://interno.fiscord.lat/suspended" },
+    { "source": "/manifest.json",         "destination": "https://interno.fiscord.lat/manifest.json" },
+    { "source": "/apple-touch-icon.png",  "destination": "https://interno.fiscord.lat/apple-touch-icon.png" },
+    { "source": "/firebase-messaging-sw.js", "destination": "https://interno.fiscord.lat/firebase-messaging-sw.js" },
+    { "source": "/terms",                 "destination": "https://interno.fiscord.lat/terms" },
+    { "source": "/privacy",               "destination": "https://interno.fiscord.lat/privacy" }
   ],
   "headers": [
     {
@@ -24,8 +24,13 @@
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" }
+      ]
+    },
+    {
+      "source": "/((?!app/|assets/|auth/|superadmin/|login|register|accept-invite|reset-password|pending|suspended|manifest.json|apple-touch-icon.png|firebase-messaging-sw.js|terms|privacy).*)",
+      "headers": [
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" },
         {
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
