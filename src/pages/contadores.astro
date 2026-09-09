@@ -1,16 +1,243 @@
 ---
 import Base from '../layouts/Base.astro';
-import EnObra from '../components/EnObra.astro';
+import Button from '../components/Button.astro';
+import Tear from '../components/Tear.astro';
+import Icon from '../components/Icon.astro';
+
+const points = [
+  {
+    t: 'Agregas la empresa por su RNC',
+    d: 'Desde tu panel escribes el RNC de la empresa y el correo de su administrador. Le llega una solicitud y, cuando la aprueba, la empresa aparece en tu panel. La empresa también puede invitarte desde su lado — en cualquiera de los dos casos, entras solo después de que su administrador lo autoriza.',
+  },
+  {
+    t: 'Creas tu cuenta una sola vez',
+    d: 'Tu cuenta de contador es tuya y separada de la de tus clientes. Desde ella entras a todas las empresas que hayas vinculado, sin compartir contraseñas ni tocar su configuración.',
+  },
+  {
+    t: 'Exportas el 606 de varias a la vez',
+    d: 'Seleccionas las empresas que ya tienen el mes cerrado y descargas un Excel con una hoja por empresa. Las que no tienen facturas en el período se omiten y te avisa.',
+  },
+  {
+    t: 'Ves lo que falta antes de que sea urgente',
+    d: 'El panel te dice cuántas empresas todavía no cerraron el mes, cuántas facturas cargó cada una y cuáles tienen comprobantes marcados para revisar.',
+  },
+  {
+    t: 'Sin límite de empresas',
+    d: 'Manejas todas las empresas que vincules, sin tope. Cada una tiene su propia suscripción y su acceso de contador; no pagas por entrar a ninguna.',
+  },
+  {
+    t: 'Trabajas en el plan del cliente',
+    d: 'El acceso de contador está incluido en todos los planes, hasta el Free. Entras, revisas y exportas sin tocar la configuración de la empresa, y ella te puede revocar el acceso cuando quiera.',
+  },
+];
+
+const empresas = [
+  ['Ferretería Popular, SRL', '47 fact.', true],
+  ['Distribuidora Antillana', '28 fact.', true],
+  ['Farmacia La Salud', 'pendiente', false],
+];
 ---
 
 <Base
   title="Para contadores"
-  description="Todas tus empresas en un solo panel. Tus clientes registran sus facturas durante el mes; tú revisas lo que falta y exportas el 606 de varias empresas a la vez."
+  description="Todas tus empresas en un solo panel. Tus clientes registran sus facturas durante el mes; tú revisas lo que falta y exportas el 606 de varias empresas a la vez, sin armar planillas a mano."
   active="contadores"
   path="/contadores"
 >
-  <EnObra
-    title="Todas tus empresas en un solo panel"
-    blurb="Estamos armando esta página: cómo agregas una empresa por su RNC, cómo entras tras la aprobación del administrador, sin límite de empresas, y cómo exportas el 606 de varias a la vez."
-  />
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <h1>Todas tus empresas<br />en un solo panel</h1>
+        <p>
+          Tus clientes registran sus facturas durante el mes. Tú entras, revisas
+          lo que falta y exportas el 606 de varias empresas a la vez, sin armar
+          planillas a mano.
+        </p>
+        <div class="cta"><Button href="/register">Crear cuenta de contador</Button></div>
+      </div>
+      <div class="card panel">
+        <p class="panel-kicker">Cierre del 606 · septiembre</p>
+        <div class="panel-stat">
+          <span class="fiscal big">3</span>
+          <span>de 8 empresas sin exportar</span>
+        </div>
+        <div class="panel-rows">
+          {
+            empresas.map(([n, m, ok]) => (
+              <div class="panel-row">
+                <Icon
+                  name={ok ? 'check' : 'clock'}
+                  size={13}
+                  stroke={2.4}
+                  color={ok ? 'var(--valid)' : 'var(--warn)'}
+                />
+                <span class="pr-name">{n}</span>
+                <span class="fiscal pr-meta">{m}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Tear top="var(--paper)" bottom="var(--surface)" />
+
+  <section class="points">
+    <div class="wrap">
+      {
+        points.map((p) => (
+          <div class="point">
+            <h2>{p.t}</h2>
+            <p>{p.d}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="wrap">
+      <h2>Empieza a llevar tus empresas hoy</h2>
+      <p>
+        Crea tu cuenta de contador gratis. ¿Tienes dudas antes de empezar?
+        Escríbenos a <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>.
+      </p>
+      <Button href="/register">Crear cuenta de contador</Button>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--ecf-bg), var(--paper) 92%);
+  }
+  .hero .grid {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+    padding-block: 70px 54px;
+  }
+  .hero h1 {
+    font-size: 48px;
+    letter-spacing: -0.035em;
+    line-height: 1.06;
+  }
+  .hero p {
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-top: 18px;
+    max-width: 460px;
+  }
+  .cta {
+    margin-top: 26px;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+  .panel-kicker {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ink-faint);
+  }
+  .panel-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .panel-stat .big {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .panel-stat span:last-child {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .panel-rows {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .panel-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+  }
+  .pr-name {
+    flex: 1;
+  }
+  .pr-meta {
+    color: var(--ink-soft);
+  }
+
+  .points {
+    background: var(--surface);
+  }
+  .points .wrap {
+    max-width: 1000px;
+    padding-block: 78px;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+  }
+  .point h2 {
+    font-size: 19px;
+    letter-spacing: -0.02em;
+  }
+  .point p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-top: 9px;
+    max-width: 640px;
+  }
+
+  .close {
+    background: var(--grad-ink);
+    color: #fff;
+  }
+  .close .wrap {
+    max-width: 1000px;
+    padding-block: 72px;
+  }
+  .close h2 {
+    font-size: 28px;
+    letter-spacing: -0.03em;
+  }
+  .close p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.66);
+    margin-top: 10px;
+    max-width: 520px;
+    line-height: 1.65;
+  }
+  .close a {
+    color: #fff;
+    text-decoration: underline;
+  }
+  .close :global(.btn) {
+    margin-top: 22px;
+  }
+
+  @media (max-width: 860px) {
+    .hero .grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .hero h1 {
+      font-size: 34px;
+    }
+    .hero h1 br {
+      display: none;
+    }
+  }
+</style>

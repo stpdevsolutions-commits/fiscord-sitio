@@ -1,16 +1,178 @@
 ---
 import Base from '../layouts/Base.astro';
-import EnObra from '../components/EnObra.astro';
+import Button from '../components/Button.astro';
+import Tear from '../components/Tear.astro';
+
+const features = [
+  {
+    t: 'Registro de comprobantes',
+    d: 'Registras cada compra con su NCF: a mano, por foto o por QR. FiscoRD guarda el proveedor, el tipo de gasto, el método de pago y los montos con el ITBIS ya desglosado.',
+    note: 'A mano toma menos de un minuto. Con el QR de un e-CF, unos segundos.',
+  },
+  {
+    t: 'Validación contra la DGII',
+    d: 'Al escribir el RNC del proveedor, FiscoRD consulta el padrón público de contribuyentes y te muestra el nombre y el estado. Con el NCF, verifica que el rango esté vigente. Es información pública de la DGII, usada para revisar tus datos.',
+    note: 'Un RNC que no figura no te frena — puedes registrar la factura igual y marcarla para revisar.',
+  },
+  {
+    t: 'Lectura del e-CF por QR',
+    d: 'Los comprobantes fiscales electrónicos traen un código QR con todos sus datos. La cámara lo lee y llena el formulario: RNC, e-NCF, código de seguridad, fecha, monto e ITBIS.',
+    note: 'Soporta E31, E32, E33, E34, E41, E43, E44 y E45.',
+  },
+  {
+    t: 'Escaneo masivo con IA',
+    d: 'Subes varias fotos de facturas de una vez. La IA lee los datos de cada una y te deja una lista para revisar y aprobar. Marca lo que leyó con poca confianza para que lo confirmes.',
+    note: 'Pensado para el que junta las facturas del mes y las carga todas juntas.',
+  },
+  {
+    t: 'Calculadora fiscal',
+    d: 'Le das el monto total de la factura y marcas qué impuestos incluye (ITBIS, ISC, propina legal). FiscoRD desglosa la base y cada impuesto. También va al revés: desde la base calcula el total.',
+    note: 'El desglose queda editable — si la factura trae un redondeo raro, lo ajustas.',
+  },
+  {
+    t: 'Reporte del 606',
+    d: 'Exportas el Formato 606 (compras) en Excel, con las columnas y los códigos exactos de la DGII, más una hoja de catálogos. También un PDF con membrete y un respaldo completo en JSON. El reporte del 607 (ventas) estará disponible próximamente.',
+    note: 'Cada reporte guarda qué facturas incluyó, para que no repitas comprobantes entre meses.',
+  },
+  {
+    t: 'Multiempresa',
+    d: 'Si manejas varias razones sociales, cambias de empresa con un toque. Cada una tiene sus facturas, su plan y su equipo, aisladas entre sí.',
+    note: 'En el plan Empresarial, hasta 5 empresas bajo una sola suscripción.',
+  },
+  {
+    t: 'Equipo y contador',
+    d: 'Invitas colaboradores para que registren facturas contigo, y vinculas a tu contador para que vea todo y exporte los reportes. Cada quien con su propia cuenta; revocas el acceso cuando quieras.',
+    note: 'El contador entra en cualquier plan, incluido el Free.',
+  },
+  {
+    t: 'App nativa de Android',
+    id: 'android',
+    d: 'La app de Android es nativa, no un sitio web dentro de una app. Registra facturas sin conexión y sincroniza al volver la señal — útil cuando cargas facturas desde donde no hay wifi.',
+    note: 'En iPhone, por ahora, FiscoRD funciona desde el navegador.',
+  },
+];
 ---
 
 <Base
   title="Funciones"
-  description="Todo lo que pasa entre la factura y el 606: registro de comprobantes, validación contra la DGII, lectura del e-CF por QR, calculadora fiscal y reporte del 606."
+  description="Todo lo que pasa entre la factura y el 606: registro de comprobantes, validación contra la DGII, lectura del e-CF por QR, escaneo masivo con IA, calculadora fiscal y reporte del 606."
   active="funciones"
   path="/funciones"
 >
-  <EnObra
-    title="Todo lo que pasa entre la factura y el 606"
-    blurb="Estamos armando esta página con el detalle de cada función: registro de comprobantes, validación de RNC y NCF, lectura del e-CF por QR, escaneo masivo con IA, calculadora fiscal y el reporte del 606."
-  />
+  <section class="hero">
+    <div class="wrap">
+      <h1>Todo lo que pasa entre la factura y el 606</h1>
+      <p>
+        FiscoRD no reinventa la contabilidad. Se ocupa de un trabajo concreto:
+        que cada comprobante quede bien registrado y verificado, para que el
+        reporte salga solo.
+      </p>
+    </div>
+  </section>
+
+  <Tear top="var(--paper)" bottom="var(--surface)" />
+
+  <section class="list">
+    <div class="wrap">
+      {
+        features.map((f) => (
+          <div class="feature" id={f.id}>
+            <h2>{f.t}</h2>
+            <div>
+              <p class="desc">{f.d}</p>
+              <p class="note">{f.note}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Pruébalo con tus propias facturas</h2>
+      <Button href="/register">Crear cuenta gratis</Button>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--mint-soft), var(--paper) 90%);
+  }
+  .hero .wrap {
+    padding-block: 68px 52px;
+  }
+  .hero h1 {
+    font-size: 46px;
+    letter-spacing: -0.035em;
+    max-width: 640px;
+    line-height: 1.08;
+  }
+  .hero p {
+    font-size: 16.5px;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .list {
+    background: var(--surface);
+  }
+  .list .wrap {
+    max-width: 1080px;
+    padding-block: 76px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+  .feature {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 36px;
+    align-items: start;
+    scroll-margin-top: 90px;
+  }
+  .feature h2 {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+  .desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .note {
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin-top: 8px;
+  }
+
+  .cta {
+    background: var(--paper);
+  }
+  .cta .wrap {
+    max-width: 1080px;
+    padding-block: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .cta h2 {
+    font-size: 26px;
+    letter-spacing: -0.03em;
+  }
+
+  @media (max-width: 780px) {
+    .hero h1 {
+      font-size: 32px;
+    }
+    .feature {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  }
+</style>

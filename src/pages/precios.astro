@@ -1,16 +1,398 @@
 ---
 import Base from '../layouts/Base.astro';
-import EnObra from '../components/EnObra.astro';
+import Tear from '../components/Tear.astro';
+import Icon from '../components/Icon.astro';
+
+const planes = [
+  {
+    name: 'Free',
+    priceM: 'RD$ 0',
+    priceA: 'RD$ 0',
+    per: '',
+    desc: 'Para probar y para negocios que facturan poco.',
+    feats: [
+      '30 facturas al mes',
+      'Consulta de RNC y NCF',
+      '1 reporte 606 en Excel',
+      'Reporte PDF ilimitado',
+      'App de Android',
+      'Vincular 1 contador',
+    ],
+    cta: 'Crear cuenta gratis',
+    feat: false,
+  },
+  {
+    name: 'Pyme',
+    priceM: 'US$ 12',
+    priceA: 'US$ 120',
+    per: '/mes',
+    perA: '/año',
+    desc: 'Para el negocio que ya factura de verdad.',
+    feats: [
+      'Facturas ilimitadas',
+      'Escaneo del QR y masivo con IA',
+      'Exportar el 606 en Excel · el 607, pronto',
+      'Importar facturas desde Excel',
+      'Foto de respaldo de cada factura',
+      'Hasta 3 usuarios · 1 contador',
+      'Soporte prioritario',
+    ],
+    cta: 'Empezar con Pyme',
+    feat: true,
+  },
+  {
+    name: 'Empresarial',
+    priceM: 'US$ 25',
+    priceA: 'US$ 250',
+    per: '/mes',
+    perA: '/año',
+    desc: 'Para grupos con varias razones sociales.',
+    feats: [
+      'Todo lo de Pyme',
+      'Hasta 5 empresas',
+      'Usuarios ilimitados',
+      'Contadores ilimitados',
+      'Soporte dedicado',
+    ],
+    cta: 'Crear cuenta',
+    feat: false,
+  },
+];
+
+const cobro = [
+  {
+    q: '¿Qué formas de pago aceptan?',
+    a: 'Los planes de pago se cobran por PayPal, en dólares (US$), y hace falta una cuenta PayPal — las suscripciones de PayPal no permiten pagar con tarjeta como invitado. Estamos evaluando pagos locales con tarjeta.',
+  },
+  {
+    q: '¿Qué pasa si llego al límite del plan Free?',
+    a: 'Puedes seguir consultando y exportando lo que ya registraste, pero no podrás agregar más facturas hasta el mes siguiente o hasta que actualices el plan.',
+  },
+  {
+    q: '¿Puedo cancelar cuando quiera?',
+    a: 'Sí. El plan sigue activo hasta el final del período que ya pagaste y no se renueva.',
+  },
+];
 ---
 
 <Base
   title="Precios"
-  description="Empieza gratis. Pagas si el negocio crece. Free permanente sin tarjeta; Pyme US$12/mes; Empresarial US$25/mes. Cobro por PayPal en dólares."
+  description="Empieza gratis. Pagas si el negocio crece. Free permanente sin tarjeta; Pyme US$12/mes; Empresarial US$25/mes. El cobro es por PayPal, en dólares."
   active="precios"
   path="/precios"
 >
-  <EnObra
-    title="Empieza gratis. Pagas si el negocio crece."
-    blurb="Estamos armando la tabla de planes (Free, Pyme, Empresarial), el toggle mensual / anual y las preguntas sobre el cobro."
-  />
+  <section class="head">
+    <div class="wrap">
+      <h1>Empieza gratis. Pagas si el negocio crece.</h1>
+      <p>
+        Los planes de pago se cobran por PayPal, en dólares. El plan Free no pide
+        tarjeta.
+      </p>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="wrap">
+      <div class="toggle" role="radiogroup" aria-label="Ciclo de pago">
+        <input type="radio" name="ciclo" id="mensual" checked />
+        <label for="mensual">Mensual</label>
+        <input type="radio" name="ciclo" id="anual" />
+        <label for="anual">Anual · 2 meses gratis</label>
+      </div>
+
+      <div class="planes">
+        {
+          planes.map((p) => (
+            <div class:list={['plan', { feat: p.feat }]}>
+              {p.feat && <span class="tag">El más usado</span>}
+              <h2>{p.name}</h2>
+              <p class="desc">{p.desc}</p>
+              <div class="price">
+                <span class="m">
+                  <span class="fiscal amount">{p.priceM}</span>
+                  {p.per && <span class="per">{p.per}</span>}
+                </span>
+                <span class="a">
+                  <span class="fiscal amount">{p.priceA}</span>
+                  {p.perA && <span class="per">{p.perA}</span>}
+                </span>
+              </div>
+              <ul>
+                {p.feats.map((f) => (
+                  <li>
+                    <Icon
+                      name="check"
+                      size={13}
+                      stroke={2.6}
+                      color={p.feat ? '#7fd4c9' : 'var(--valid)'}
+                    />
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href="/register" class:list={['cta', { ghost: !p.feat }]}>
+                {p.cta}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <Tear top="var(--paper)" bottom="var(--surface)" />
+
+  <section class="faq">
+    <div class="wrap">
+      <h2>Sobre el cobro</h2>
+      <div class="list">
+        {
+          cobro.map((f, i) => (
+            <details open={i === 0}>
+              <summary>
+                <span>{f.q}</span>
+                <Icon name="chevDown" size={15} color="var(--ink-faint)" class="caret" />
+              </summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .head {
+    background: var(--paper);
+  }
+  .head .wrap {
+    padding-block: 64px 20px;
+    text-align: center;
+  }
+  h1 {
+    font-size: 44px;
+    letter-spacing: -0.035em;
+  }
+  .head p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+
+  .pricing {
+    background: var(--paper);
+  }
+  .pricing .wrap {
+    max-width: 1080px;
+    padding-block: 24px 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Toggle mensual / anual — sin JS, con :has() */
+  .toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 4px;
+  }
+  .toggle input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .toggle label {
+    padding: 8px 18px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .toggle:has(#mensual:checked) label[for='mensual'],
+  .toggle:has(#anual:checked) label[for='anual'] {
+    background: var(--aqua);
+    color: #fff;
+    font-weight: 700;
+  }
+  .toggle input:focus-visible + label {
+    outline: 2px solid var(--aqua);
+    outline-offset: 2px;
+  }
+
+  .planes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    width: 100%;
+  }
+  .plan {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    background: var(--surface);
+  }
+  .plan.feat {
+    border: 2px solid var(--aqua);
+    background: var(--grad-ink);
+    color: #fff;
+  }
+  .tag {
+    position: absolute;
+    top: -11px;
+    left: 24px;
+    background: var(--aqua);
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: 99px;
+  }
+  .plan h2 {
+    font-size: 18px;
+  }
+  .desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+  .plan.feat .desc {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .price {
+    margin: 16px 0 4px;
+  }
+  .amount {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .per {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin-left: 2px;
+  }
+  .plan.feat .per {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .price .a {
+    display: none;
+  }
+  .pricing:has(#anual:checked) .price .m {
+    display: none;
+  }
+  .pricing:has(#anual:checked) .price .a {
+    display: inline;
+  }
+  ul {
+    margin: 18px 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  li {
+    display: flex;
+    gap: 8px;
+    font-size: 12.5px;
+    align-items: baseline;
+  }
+  .plan.feat li {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .cta {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: var(--r-md);
+    font-size: 13.5px;
+    font-weight: 600;
+    background: var(--aqua);
+    color: #fff;
+  }
+  .cta:hover {
+    color: #fff;
+    background: var(--aqua-deep);
+  }
+  .plan.feat .cta {
+    background: #fff;
+    color: var(--aqua-deep);
+  }
+  .cta.ghost {
+    background: var(--surface);
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+  }
+  .cta.ghost:hover {
+    color: var(--ink);
+    background: var(--surface-2);
+  }
+
+  .faq {
+    background: var(--surface);
+  }
+  .faq .wrap {
+    max-width: 760px;
+    padding-block: 66px;
+  }
+  .faq h2 {
+    font-size: 26px;
+    letter-spacing: -0.03em;
+  }
+  .list {
+    margin-top: 20px;
+  }
+  details {
+    border-top: 1px solid var(--line);
+    padding: 15px 0;
+  }
+  details:first-child {
+    border-top: none;
+  }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] summary {
+    color: var(--aqua);
+    font-weight: 700;
+  }
+  details[open] .caret {
+    transform: rotate(180deg);
+  }
+  .caret {
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+  }
+  details p {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-top: 9px;
+  }
+
+  @media (max-width: 860px) {
+    h1 {
+      font-size: 30px;
+    }
+    .planes {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+    }
+  }
+</style>
