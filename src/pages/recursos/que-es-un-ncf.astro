@@ -1,16 +1,144 @@
 ---
-import Base from '../../layouts/Base.astro';
-import EnObra from '../../components/EnObra.astro';
+import Doc from '../../layouts/Doc.astro';
+import Button from '../../components/Button.astro';
+
+const toc = [
+  { id: 'que-es', label: 'Qué es' },
+  { id: 'compone', label: 'Cómo se compone' },
+  { id: 'tipos', label: 'Los tipos' },
+  { id: 'fisico-ecf', label: 'Físico o e-CF' },
+];
+
+const tipos = [
+  ['B01', 'Crédito Fiscal'],
+  ['B02', 'Consumidor Final'],
+  ['B04', 'Nota de Crédito'],
+  ['B11', 'Comprobante de Compras'],
+  ['B14', 'Regímenes Especiales'],
+  ['B15', 'Gubernamental'],
+  ['E31', 'e-CF de Crédito Fiscal'],
+  ['E32', 'e-CF Consumidor Final'],
+  ['E41', 'e-CF de Compras'],
+  ['E43', 'e-CF Gastos Menores'],
+];
 ---
 
-<Base
-  title="Qué es un NCF"
-  description="Cómo se lee un Número de Comprobante Fiscal, los tipos que existen (B01, B02, B11… y los e-CF E31, E32…) y la diferencia entre NCF físico y comprobante electrónico."
-  active="recursos"
+<Doc
+  title="Cómo leer un NCF"
+  description="Cómo se compone un Número de Comprobante Fiscal, los tipos que existen (B01, B02, B11… y los e-CF E31, E32…) y la diferencia entre NCF físico y comprobante electrónico."
+  kicker="Recursos · Guía"
+  heading="Cómo leer un NCF"
+  updated="1 de septiembre de 2026"
   path="/recursos/que-es-un-ncf"
+  toc={toc}
 >
-  <EnObra
-    title="Qué es un NCF"
-    blurb="Estamos armando esta guía: la anatomía de un Número de Comprobante Fiscal, los tipos B01–B17 y los e-CF E31–E45, y la diferencia entre NCF físico y electrónico."
-  />
-</Base>
+  <h2 id="que-es">Qué es</h2>
+  <p>
+    El <b>NCF</b> (Número de Comprobante Fiscal) es el código que la DGII asigna a
+    cada factura con valor fiscal. Sin un NCF válido, una compra no puede ir al
+    606 ni te sirve para deducir el ITBIS.
+  </p>
+
+  <h2 id="compone">Cómo se compone</h2>
+  <p>
+    Un NCF físico tiene una letra de serie, dos dígitos de tipo y ocho de
+    secuencia. Un e-CF empieza con <span class="fiscal">E</span> y sigue una
+    estructura parecida, más un <b>código de seguridad</b> que viene en el QR.
+  </p>
+  <div class="card ncf-anatomy">
+    <span class="fiscal ncf-code">B <span class="hl">01</span> 00004521</span>
+    <div class="ncf-legend">
+      <div><span class="fiscal">B</span> — comprobante físico</div>
+      <div><span class="fiscal hl">01</span> — tipo: Crédito Fiscal</div>
+      <div><span class="fiscal">00004521</span> — secuencia</div>
+    </div>
+  </div>
+
+  <h2 id="tipos">Los tipos que vas a ver</h2>
+  <div class="tipos">
+    {
+      tipos.map(([c, l]) => (
+        <div class="tipo">
+          <span class="fiscal code">{c}</span>
+          <span>{l}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <h2 id="fisico-ecf">Físico o electrónico</h2>
+  <p>
+    El e-CF (comprobante fiscal electrónico) reemplaza al papel: se emite y se
+    valida en línea con la DGII. Trae un QR con todos los datos y un código de
+    seguridad. Cada vez más proveedores emiten e-CF; FiscoRD registra los dos.
+  </p>
+  <div class="note">
+    Cuando FiscoRD dice que un NCF figura «vigente», quiere decir que el rango
+    aparece autorizado en el portal público de la DGII en ese momento. Es un dato
+    sobre el comprobante, no una garantía sobre tu factura.
+  </div>
+
+  <p class="source">
+    Fuente: DGII, <a
+      href="https://dgii.gov.do/cicloContribuyente/deberesFormales/comprobantesFiscales/Paginas/default.aspx"
+      rel="noopener"
+      target="_blank">Comprobantes Fiscales</a>. Consulta un NCF o un RNC en el
+    portal público de la DGII (<a
+      href="https://dgii.gov.do"
+      rel="noopener"
+      target="_blank">dgii.gov.do</a>).
+  </p>
+
+  <div class="cta-row"><Button href="/register">Registrar una factura en FiscoRD</Button></div>
+</Doc>
+
+<style>
+  .ncf-anatomy {
+    padding: 18px;
+    margin: 8px 0 20px;
+    display: flex;
+    gap: 26px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ncf-code {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+  .hl {
+    color: var(--aqua);
+  }
+  .ncf-legend {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .ncf-legend .fiscal {
+    color: var(--ink);
+  }
+  .tipos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 28px;
+    margin: 8px 0 20px;
+  }
+  .tipo {
+    display: flex;
+    gap: 10px;
+    font-size: 13px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .tipo .code {
+    width: 44px;
+    color: var(--aqua);
+  }
+  .tipo span:last-child {
+    color: var(--ink-soft);
+  }
+  @media (max-width: 560px) {
+    .tipos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

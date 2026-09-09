@@ -1,16 +1,88 @@
 ---
-import Base from '../../layouts/Base.astro';
-import EnObra from '../../components/EnObra.astro';
+import Doc from '../../layouts/Doc.astro';
+import Report606 from '../../components/Report606.astro';
+import Button from '../../components/Button.astro';
+
+const toc = [
+  { id: 'que-es', label: 'Qué es' },
+  { id: 'quien-cuando', label: 'Quién y cuándo' },
+  { id: 'columnas', label: 'Las columnas' },
+  { id: 'errores', label: 'Errores comunes' },
+  { id: 'con-fiscord', label: 'Con FiscoRD' },
+];
 ---
 
-<Base
+<Doc
   title="Guía del 606"
   description="Qué es el Formato 606, quién lo presenta, cuándo se remite (antes del día 15, siempre antes del ITBIS) y qué lleva cada columna del formato oficial de la DGII."
-  active="recursos"
+  kicker="Recursos · Guía"
+  heading="La guía del 606, sin vueltas"
+  updated="1 de septiembre de 2026"
   path="/recursos/guia-606"
+  toc={toc}
 >
-  <EnObra
-    title="Guía del 606"
-    blurb="Estamos armando esta guía: qué es el Formato 606, quién lo presenta, cuándo se remite y qué significa cada columna, con enlace a la fuente en el portal de la DGII."
-  />
-</Base>
+  <h2 id="que-es">Qué es</h2>
+  <p>
+    El Formato 606 es el reporte de <b>compras y gastos</b> que casi toda empresa
+    con RNC tiene que enviar a la DGII cada mes. Lista, comprobante por
+    comprobante, a quién le compraste, con qué NCF, por cuánto y cuánto ITBIS
+    pagaste.
+  </p>
+
+  <h2 id="quien-cuando">Quién lo presenta y cuándo</h2>
+  <p>
+    Lo presentan las personas jurídicas y las físicas con negocio, a través de la
+    Oficina Virtual de la DGII. Se remite <b>antes del día 15 de cada mes</b>, con
+    las operaciones del mes anterior, y siempre antes de la fecha límite de la
+    declaración del ITBIS (día 20). Si el día cae fin de semana o feriado, corre
+    al siguiente laborable.
+  </p>
+  <div class="note">
+    Aunque no hayas tenido compras en el mes, hay que enviar el 606 igual — la
+    Oficina Virtual tiene la opción «Declaraciones en Cero». Confírmalo con tu
+    contador según tu régimen.
+  </div>
+
+  <h2 id="columnas">Qué lleva cada fila</h2>
+  <p>Cada comprobante de compra es una fila. Estas son las columnas principales del formato de envío:</p>
+  <div style="margin:8px 0 20px;"><Report606 compact /></div>
+  <p>
+    <b>RNC o Cédula</b> del proveedor y su <b>tipo de identificación</b> (1 si es
+    RNC, 2 si es cédula). El <b>código de bienes y servicios</b> (01 a 11)
+    clasifica el gasto. El <b>NCF</b> tal cual aparece en el comprobante. Las
+    <b>fechas</b> van en formato AAAAMMDD. Luego los <b>montos</b>: lo facturado,
+    el ITBIS facturado, y — si aplica — el ITBIS retenido, el llevado al costo,
+    retenciones de ISR, el ISC y la propina legal. Cierra con la <b>forma de
+    pago</b> (01 a 07).
+  </p>
+
+  <h2 id="errores">Errores que se repiten</h2>
+  <p>
+    Meter un NCF de un tipo que no corresponde a una compra (por ejemplo un B02 de
+    consumidor final donde debía ir un B01). Clasificar todo como «09 Compras» sin
+    separar activos fijos (10) o seguros (11). Registrar el monto con ITBIS
+    incluido en la columna del monto facturado. Dejar filas con RNC que no existe
+    en el padrón.
+  </p>
+
+  <h2 id="con-fiscord">Cómo ayuda FiscoRD</h2>
+  <p>
+    Registras cada compra durante el mes con el NCF y el RNC ya verificados contra
+    el padrón de la DGII. El ITBIS se desglosa solo. Al cerrar el mes, exportas un
+    Excel con estas columnas ya llenas y en el orden del formato — tu contador
+    revisa y sube.
+  </p>
+
+  <p class="source">
+    Fuente: DGII, <a
+      href="https://dgii.gov.do/cicloContribuyente/obligacionesTributarias/remisionInformacion/Paginas/formatoEnvioDatos.aspx"
+      rel="noopener"
+      target="_blank">Formatos de Envío de Datos</a> e Instructivo del Formato 606.
+    Verifica siempre las fechas del año en curso en <a
+      href="https://dgii.gov.do"
+      rel="noopener"
+      target="_blank">dgii.gov.do</a>.
+  </p>
+
+  <div class="cta-row"><Button href="/register">Probar FiscoRD gratis</Button></div>
+</Doc>

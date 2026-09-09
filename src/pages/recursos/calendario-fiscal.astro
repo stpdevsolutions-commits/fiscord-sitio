@@ -1,6 +1,25 @@
 ---
 import Base from '../../layouts/Base.astro';
-import EnObra from '../../components/EnObra.astro';
+
+const grupos = [
+  {
+    period: 'Cada mes',
+    rows: [
+      ['Antes del 10', 'IR-3 e IR-17 · Retenciones del ISR (asalariados y a terceros) del mes anterior'],
+      ['Antes del 15', 'Formatos 606, 607 y 608 · Compras, ventas y comprobantes anulados del mes anterior'],
+      ['Antes del 20', 'IT-1 · Declaración y pago del ITBIS del mes anterior'],
+      ['Día 15', 'Anticipo mensual del ISR · Personas jurídicas y físicas con actividad comercial'],
+    ],
+  },
+  {
+    period: 'Una vez al año',
+    rows: [
+      ['Hasta el 31 de marzo', 'IR-1 · Declaración jurada anual del ISR de personas físicas (año fiscal enero–diciembre)'],
+      ['120 días tras el cierre', 'IR-2 · Declaración jurada anual del ISR de sociedades (para cierre en diciembre, cerca del 28 de abril)'],
+      ['Con la IR-2', 'Anexos, Formato 623 e Impuesto a los Activos (1 %)'],
+    ],
+  },
+];
 ---
 
 <Base
@@ -9,8 +28,143 @@ import EnObra from '../../components/EnObra.astro';
   active="recursos"
   path="/recursos/calendario-fiscal"
 >
-  <EnObra
-    title="Calendario fiscal DGII 2026"
-    blurb="Estamos armando esta referencia: IT-1, formatos 606/607/608, retenciones (IR-3, IR-17), anticipos y las declaraciones anuales (IR-1, IR-2), con las fechas y el enlace al portal de la DGII."
-  />
+  <section class="head">
+    <div class="wrap">
+      <p class="kicker">Recursos · Referencia</p>
+      <h1>Calendario fiscal DGII 2026</h1>
+      <p class="lede">
+        Las obligaciones más comunes de una empresa con RNC. Es una referencia
+        general: las fechas exactas, tu régimen y tu fecha de cierre fiscal los
+        confirma tu contador. Si el día límite cae fin de semana o feriado, corre
+        al siguiente laborable.
+      </p>
+    </div>
+  </section>
+
+  <section class="body">
+    <div class="wrap">
+      <div class="table">
+        {
+          grupos.map((g) => (
+            <div class="group">
+              <div class="period">{g.period}</div>
+              {g.rows.map(([when, what]) => (
+                <div class="row">
+                  <span class="fiscal when">{when}</span>
+                  <span class="what">{what}</span>
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </div>
+      <p class="source">
+        Fuentes: DGII — <a
+          href="https://dgii.gov.do/cicloContribuyente/obligacionesTributarias/remisionInformacion/Paginas/formatoEnvioDatos.aspx"
+          rel="noopener"
+          target="_blank">Formatos de Envío de Datos</a>, <a
+          href="https://dgii.gov.do/cicloContribuyente/obligacionesTributarias/principalesImpuestos/Paginas/impuestoSobreRenta.aspx"
+          rel="noopener"
+          target="_blank">Impuesto sobre la Renta</a> e <a
+          href="https://dgii.gov.do/cicloContribuyente/obligacionesTributarias/principalesImpuestos/Paginas/ITBIS.aspx"
+          rel="noopener"
+          target="_blank">ITBIS</a>. La seguridad social (TSS) se paga aparte,
+        dentro de los primeros días hábiles del mes. Verifica el calendario del
+        año en curso en <a
+          href="https://dgii.gov.do"
+          rel="noopener"
+          target="_blank">dgii.gov.do</a>.
+      </p>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .head {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+  .head .wrap {
+    padding-block: 56px 36px;
+  }
+  .kicker {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  h1 {
+    font-size: 42px;
+    letter-spacing: -0.03em;
+    margin-top: 10px;
+  }
+  .lede {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    max-width: 640px;
+    line-height: 1.6;
+  }
+
+  .body {
+    background: var(--paper);
+  }
+  .body .wrap {
+    max-width: 1000px;
+    padding-block: 48px 80px;
+  }
+  .table {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .group + .group {
+    border-top: 1px solid var(--line);
+  }
+  .period {
+    padding: 12px 20px;
+    background: var(--surface-2);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--aqua);
+  }
+  .row {
+    display: flex;
+    gap: 20px;
+    padding: 13px 20px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 13.5px;
+  }
+  .when {
+    width: 170px;
+    flex-shrink: 0;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .what {
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .source {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-top: 16px;
+    line-height: 1.65;
+  }
+  .source a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 30px;
+    }
+    .row {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .when {
+      width: auto;
+    }
+  }
+</style>
