@@ -13,11 +13,17 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, active, path = Astro.url.pathname, ogImage } = Astro.props;
+const {
+  title,
+  description,
+  active,
+  path = Astro.url.pathname,
+  ogImage = '/og/default.png',
+} = Astro.props;
 
 const SITE = 'https://fiscord.lat';
 const canonical = new URL(path === '/' ? '/' : path.replace(/\/$/, ''), SITE).href;
-const ogUrl = ogImage ? new URL(ogImage, SITE).href : undefined;
+const ogUrl = new URL(ogImage, SITE).href;
 const fullTitle = title === 'FiscoRD' ? title : `${title} · FiscoRD`;
 ---
 
@@ -39,11 +45,14 @@ const fullTitle = title === 'FiscoRD' ? title : `${title} · FiscoRD`;
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    {ogUrl && <meta property="og:image" content={ogUrl} />}
-    <meta name="twitter:card" content={ogUrl ? 'summary_large_image' : 'summary'} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FiscoRD — fiscord.lat" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    {ogUrl && <meta name="twitter:image" content={ogUrl} />}
+    <meta name="twitter:image" content={ogUrl} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

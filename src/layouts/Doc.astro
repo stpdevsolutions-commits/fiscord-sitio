@@ -10,6 +10,7 @@ interface Props {
   path: string;
   toc?: { id: string; label: string }[];
   active?: string;
+  ogImage?: string;
 }
 
 const {
@@ -21,10 +22,17 @@ const {
   path,
   toc = [],
   active = 'recursos',
+  ogImage = '/og/recursos.png',
 } = Astro.props;
 ---
 
-<Base title={title} description={description} active={active} path={path}>
+<Base
+  title={title}
+  description={description}
+  active={active}
+  path={path}
+  ogImage={ogImage}
+>
   <section class="doc-head">
     <div class="wrap">
       <p class="kicker">{kicker}</p>
