@@ -16,6 +16,7 @@ const LINKS = [
 ---
 
 <header class="nav glass">
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menú de navegación" />
   <div class="wrap bar">
     <a href="/" class="brand" aria-label="FiscoRD — inicio">
       <Logo size={30} word={19} />
@@ -33,12 +34,17 @@ const LINKS = [
           </a>
         ))
       }
+      <a href="/login" class="link signin-mobile">Iniciar sesión</a>
     </nav>
 
     <div class="actions">
       <a href="/login" class="signin">Iniciar sesión</a>
       <Button href="/register" size="sm">Crear cuenta gratis</Button>
     </div>
+
+    <label for="nav-toggle" class="burger" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </label>
   </div>
 </header>
 
@@ -48,6 +54,14 @@ const LINKS = [
     top: 0;
     z-index: 30;
     border-bottom: 1px solid var(--line);
+  }
+  /* checkbox real, oculto a la vista pero enfocable con teclado */
+  .nav-toggle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
   }
   .bar {
     display: flex;
@@ -78,6 +92,9 @@ const LINKS = [
     background: var(--mint-soft);
     font-weight: 600;
   }
+  .signin-mobile {
+    display: none;
+  }
   .actions {
     margin-left: auto;
     display: flex;
@@ -93,33 +110,90 @@ const LINKS = [
     color: var(--aqua);
   }
 
-  /* Móvil: la marca arriba, los links en una tira que hace scroll,
-     y solo el botón de crear cuenta (el "iniciar sesión" cabe en el menú). */
+  /* Botón hamburguesa — solo móvil */
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    margin: -8px -8px -8px 0;
+    cursor: pointer;
+  }
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-toggle:focus-visible ~ .bar .burger {
+    outline: 2px solid var(--aqua);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
   @media (max-width: 860px) {
     .bar {
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .links {
-      order: 3;
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-    }
-    .links::-webkit-scrollbar {
-      display: none;
-    }
-    .link {
-      white-space: nowrap;
+      gap: 14px;
     }
     .actions {
-      gap: 12px;
+      margin-left: auto;
     }
-  }
-  @media (max-width: 420px) {
     .signin {
       display: none;
+    }
+    .burger {
+      display: flex;
+    }
+
+    /* Menú desplegable a pantalla completa bajo la barra */
+    .links {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      flex-direction: column;
+      gap: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      padding: 4px 20px 12px;
+      box-shadow: 0 16px 32px -20px rgba(14, 36, 39, 0.25);
+      display: none;
+    }
+    .nav:has(.nav-toggle:checked) .links {
+      display: flex;
+    }
+    .link {
+      padding: 12px 8px;
+      font-size: 15px;
+      border-radius: 0;
+      border-top: 1px solid var(--line-soft);
+    }
+    .link:first-child {
+      border-top: none;
+    }
+    .signin-mobile {
+      display: block;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* hamburguesa → X cuando el menú está abierto */
+    .nav:has(.nav-toggle:checked) .burger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav:has(.nav-toggle:checked) .burger span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav:has(.nav-toggle:checked) .burger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .burger span {
+      transition: none;
     }
   }
 </style>

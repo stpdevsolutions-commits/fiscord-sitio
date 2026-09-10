@@ -9,7 +9,9 @@
   --paper: #f4f8f7;
   --ink: #0e2427;
   --ink-soft: #54706f;
-  --ink-faint: #90aaa8;
+  /* #90aaa8 en los mockups; oscurecido a ~3:1 — solo para texto incidental
+     (© , metadatos). El texto con contenido usa --ink-soft (5:1, pasa AA). */
+  --ink-faint: #7c9695;
   --surface: #ffffff;
   --surface-2: #f8fbfa;
 
