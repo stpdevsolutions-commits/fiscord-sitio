@@ -2,9 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "astro",
   "rewrites": [
+    { "source": "/app",                  "destination": "https://interno.fiscord.lat/app" },
     { "source": "/app/:path*",           "destination": "https://interno.fiscord.lat/app/:path*" },
     { "source": "/assets/:path*",         "destination": "https://interno.fiscord.lat/assets/:path*" },
     { "source": "/auth/:path*",           "destination": "https://interno.fiscord.lat/auth/:path*" },
+    { "source": "/superadmin",           "destination": "https://interno.fiscord.lat/superadmin" },
     { "source": "/superadmin/:path*",     "destination": "https://interno.fiscord.lat/superadmin/:path*" },
     { "source": "/login",                 "destination": "https://interno.fiscord.lat/login" },
     { "source": "/register",              "destination": "https://interno.fiscord.lat/register" },
@@ -28,7 +30,7 @@
       ]
     },
     {
-      "source": "/((?!app/|assets/|auth/|superadmin/|login|register|accept-invite|reset-password|pending|suspended|manifest.json|apple-touch-icon.png|firebase-messaging-sw.js|terms|privacy).*)",
+      "source": "/((?!app$|app/|assets/|auth/|superadmin$|superadmin/|login|register|accept-invite|reset-password|pending|suspended|manifest.json|apple-touch-icon.png|firebase-messaging-sw.js|terms|privacy).*)",
       "headers": [
         { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         {
