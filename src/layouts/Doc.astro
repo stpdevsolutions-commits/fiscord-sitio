@@ -48,7 +48,7 @@ const {
           <nav class="toc" aria-label="En esta página">
             <p class="toc-title">En esta página</p>
             {toc.map((t) => (
-              <a href={`#${t.id}`}>{t.label}</a>
+              <a href={`#${t.id}`}>{t.label.replace(/^\d+\.\s*/, '')}</a>
             ))}
           </nav>
         )
