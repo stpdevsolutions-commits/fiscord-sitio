@@ -63,6 +63,10 @@ const fullTitle = title === 'FiscoRD' ? title : `${title} · FiscoRD`;
   </head>
   <body>
     <a href="#contenido" class="skip">Saltar al contenido</a>
+    <div class="fuera-servicio" role="alert">
+      <strong>Fuera de servicio.</strong> FiscoRD fue cerrado de forma definitiva. Para recuperar tus datos escribe a
+      <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>.
+    </div>
     <SiteNav active={active} />
     <main id="contenido">
       <slot />
@@ -70,6 +74,18 @@ const fullTitle = title === 'FiscoRD' ? title : `${title} · FiscoRD`;
     <SiteFooter />
 
     <style>
+      .fuera-servicio {
+        background: #b45309;
+        color: #fff;
+        padding: 10px 16px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+      .fuera-servicio a {
+        color: #fff;
+        text-decoration: underline;
+      }
       .skip {
         position: absolute;
         left: -9999px;
