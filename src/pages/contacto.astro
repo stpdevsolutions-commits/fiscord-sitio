@@ -5,7 +5,7 @@ import Icon from '../components/Icon.astro';
 
 <Base
   title="Contacto"
-  description="El soporte de FiscoRD se atiende por correo en soporte@fiscord.lat, en días hábiles, normalmente dentro de las 24 horas."
+  description="El soporte de FiscoRD se atiende por correo en fiscord.do@gmail.com, en días hábiles, normalmente dentro de las 24 horas."
   active={undefined}
   path="/contacto"
 >
@@ -19,9 +19,9 @@ import Icon from '../components/Icon.astro';
           dentro de las 24 horas.
         </p>
 
-        <a href="mailto:soporte@fiscord.lat" class="mail-link">
+        <a href="mailto:fiscord.do@gmail.com" class="mail-link">
           <Icon name="mail" size={16} color="var(--aqua)" />
-          <span>soporte@fiscord.lat</span>
+          <span>fiscord.do@gmail.com</span>
         </a>
 
         <p class="note">
@@ -34,7 +34,7 @@ import Icon from '../components/Icon.astro';
         </p>
       </div>
 
-      <form class="card form" id="contact-form" action="mailto:soporte@fiscord.lat" method="post" enctype="text/plain">
+      <form class="card form" id="contact-form" action="mailto:fiscord.do@gmail.com" method="post" enctype="text/plain">
         <label>
           <span>Nombre</span>
           <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required />
@@ -50,7 +50,7 @@ import Icon from '../components/Icon.astro';
         <button type="submit" class="send">Enviar mensaje</button>
         <p class="hint" id="contact-hint" hidden>
           Se abrió tu aplicación de correo con el mensaje listo. Si no se abrió, escríbenos a
-          <a href="mailto:soporte@fiscord.lat">soporte@fiscord.lat</a>.
+          <a href="mailto:fiscord.do@gmail.com">fiscord.do@gmail.com</a>.
         </p>
       </form>
     </div>
@@ -68,7 +68,7 @@ import Icon from '../components/Icon.astro';
     const mensaje = String(d.get('mensaje') ?? '').trim();
     const asunto = `Consulta FiscoRD — ${nombre}`;
     const cuerpo = `${mensaje}\n\n—\n${nombre}\n${correo}`;
-    window.location.href = `mailto:soporte@fiscord.lat?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    window.location.href = `mailto:fiscord.do@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
     const hint = document.getElementById('contact-hint');
     if (hint) hint.hidden = false;
   });
